@@ -27,7 +27,6 @@ import (
 )
 
 var (
-	youtubeHostRegex    = regexp.MustCompile(`youtube\.com$`)
 	youtubeChannelRegex = regexp.MustCompile(`channel/(.*)$`)
 )
 
@@ -168,7 +167,7 @@ func (f *SubscriptionFinder) FindSubscriptionsFromWebPage(websiteURL, contentTyp
 		return nil, locale.NewLocalizedErrorWrapper(err, "error.unable_to_parse_html_document", err)
 	}
 
-	if hrefValue, exists := doc.Find("head base").First().Attr("href"); exists {
+	if hrefValue, exists := doc.FindMatcher(goquery.Single("head base")).Attr("href"); exists {
 		hrefValue = strings.TrimSpace(hrefValue)
 		if urllib.IsAbsoluteURL(hrefValue) {
 			websiteURL = hrefValue
@@ -305,7 +304,7 @@ func (f *SubscriptionFinder) FindSubscriptionsFromYouTubeChannelPage(websiteURL 
 		return nil, locale.NewLocalizedErrorWrapper(err, "error.invalid_site_url", err)
 	}
 
-	if !youtubeHostRegex.MatchString(decodedUrl.Host) {
+	if !strings.HasSuffix(decodedUrl.Host, "youtube.com") {
 		slog.Debug("This website is not a YouTube page, the regex doesn't match", slog.String("website_url", websiteURL))
 		return nil, nil
 	}
@@ -324,7 +323,7 @@ func (f *SubscriptionFinder) FindSubscriptionsFromYouTubePlaylistPage(websiteURL
 		return nil, locale.NewLocalizedErrorWrapper(err, "error.invalid_site_url", err)
 	}
 
-	if !youtubeHostRegex.MatchString(decodedUrl.Host) {
+	if !strings.HasSuffix(decodedUrl.Host, "youtube.com") {
 		slog.Debug("This website is not a YouTube page, the regex doesn't match", slog.String("website_url", websiteURL))
 		return nil, nil
 	}

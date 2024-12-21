@@ -17,9 +17,7 @@ import (
 	"miniflux.app/v2/internal/storage"
 )
 
-var (
-	NostrSdk *sdk.System
-)
+var NostrSdk *sdk.System
 
 func GetIcon(feed *model.Feed) (bool, string) {
 	yes, profile := IsItNostr(feed.FeedURL)
@@ -31,7 +29,7 @@ func GetIcon(feed *model.Feed) (bool, string) {
 	return false, ""
 }
 
-func CreateFeed(store *storage.Storage, user *model.User, feedCreationRequest *model.FeedCreationRequest) (bool, *model.Feed) {
+func CreateFeed(store *storage.Storage, userID int64, feedCreationRequest *model.FeedCreationRequest) (bool, *model.Feed) {
 	ctx := context.Background()
 	yes, profile := IsItNostr(feedCreationRequest.FeedURL)
 
@@ -39,7 +37,7 @@ func CreateFeed(store *storage.Storage, user *model.User, feedCreationRequest *m
 		subscription := &model.Feed{}
 		nprofile := profile.Nprofile(ctx, NostrSdk, 3)
 		subscription.Title = profile.Name
-		subscription.UserID = user.ID
+		subscription.UserID = userID
 		subscription.UserAgent = feedCreationRequest.UserAgent
 		subscription.Cookie = feedCreationRequest.Cookie
 		subscription.Username = feedCreationRequest.Username
@@ -56,7 +54,7 @@ func CreateFeed(store *storage.Storage, user *model.User, feedCreationRequest *m
 			return false, nil
 		}
 
-		if err := RefreshFeed(store, user, subscription); !err {
+		if err := RefreshFeed(store, userID, subscription); !err {
 			// TODO: error handling
 			return false, nil
 		}
@@ -70,12 +68,13 @@ func CreateFeed(store *storage.Storage, user *model.User, feedCreationRequest *m
 func Initialize() {
 	NostrSdk = sdk.NewSystem(
 		sdk.WithRelayListRelays([]string{
-			"wss://nos.lol", "wss://nostr.mom", "wss://nostr.bitcoiner.social", "wss://relay.damus.io", "wss://nostr-pub.wellorder.net"}, // some standard relays
+			"wss://nos.lol", "wss://nostr.mom", "wss://nostr.bitcoiner.social", "wss://relay.damus.io", "wss://nostr-pub.wellorder.net",
+		}, // some standard relays
 		),
 	)
 }
 
-func RefreshFeed(store *storage.Storage, user *model.User, originalFeed *model.Feed) bool {
+func RefreshFeed(store *storage.Storage, userID int64, originalFeed *model.Feed) bool {
 	ctx := context.Background()
 	if yes, profile := IsItNostr(originalFeed.FeedURL); yes {
 		relays := NostrSdk.FetchOutboxRelays(ctx, profile.PubKey, 3)
@@ -123,7 +122,7 @@ func RefreshFeed(store *storage.Storage, user *model.User, originalFeed *model.F
 
 		}
 
-		processor.ProcessFeedEntries(store, updatedFeed, user, true)
+		processor.ProcessFeedEntries(store, updatedFeed, userID, true)
 
 		_, storeErr := store.RefreshFeedEntries(originalFeed.UserID, originalFeed.ID, updatedFeed.Entries, false)
 		if storeErr != nil {
@@ -174,5 +173,4 @@ func IsItNostr(candidateUrl string) (bool, *sdk.ProfileMetadata) {
 	}
 
 	return false, nil
-
 }
