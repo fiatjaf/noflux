@@ -19,128 +19,115 @@ import (
 
 var NostrSdk *sdk.System
 
+func init() {
+	NostrSdk = sdk.NewSystem()
+}
+
 func GetIcon(feed *model.Feed) (bool, string) {
 	yes, profile := IsItNostr(feed.FeedURL)
-
 	if yes {
 		return true, profile.Picture
 	}
-
 	return false, ""
 }
 
-func CreateFeed(store *storage.Storage, userID int64, feedCreationRequest *model.FeedCreationRequest) (bool, *model.Feed) {
+func CreateFeed(
+	store *storage.Storage,
+	userID int64,
+	req *model.FeedCreationRequest,
+	profile *sdk.ProfileMetadata,
+) (*model.Feed, error) {
 	ctx := context.Background()
-	yes, profile := IsItNostr(feedCreationRequest.FeedURL)
+	subscription := &model.Feed{}
+	nprofile := profile.Nprofile(ctx, NostrSdk, 3)
 
-	if yes {
-		subscription := &model.Feed{}
-		nprofile := profile.Nprofile(ctx, NostrSdk, 3)
-		subscription.Title = profile.Name
-		subscription.UserID = userID
-		subscription.UserAgent = feedCreationRequest.UserAgent
-		subscription.Cookie = feedCreationRequest.Cookie
-		subscription.Username = feedCreationRequest.Username
-		subscription.Password = feedCreationRequest.Password
-		subscription.Crawler = feedCreationRequest.Crawler
-		subscription.FetchViaProxy = feedCreationRequest.FetchViaProxy
-		subscription.HideGlobally = feedCreationRequest.HideGlobally
-		subscription.FeedURL = fmt.Sprintf("nostr:%s", nprofile)
-		subscription.SiteURL = fmt.Sprintf("https://njump.me/%s", nprofile)
-		subscription.WithCategoryID(feedCreationRequest.CategoryID)
-		subscription.CheckedNow()
+	subscription.Title = profile.Name
+	subscription.UserID = userID
+	subscription.UserAgent = req.UserAgent
+	subscription.Cookie = req.Cookie
+	subscription.Username = req.Username
+	subscription.Password = req.Password
+	subscription.Crawler = req.Crawler
+	subscription.FetchViaProxy = req.FetchViaProxy
+	subscription.HideGlobally = req.HideGlobally
+	subscription.FeedURL = fmt.Sprintf("nostr:%s", nprofile)
+	subscription.SiteURL = fmt.Sprintf("https://njump.me/%s", nprofile)
+	subscription.WithCategoryID(req.CategoryID)
+	subscription.CheckedNow()
 
-		if storeErr := store.CreateFeed(subscription); storeErr != nil {
-			return false, nil
-		}
-
-		if err := RefreshFeed(store, userID, subscription); !err {
-			// TODO: error handling
-			return false, nil
-		}
-
-		return true, subscription
+	if err := store.CreateFeed(subscription); err != nil {
+		return nil, err
 	}
 
-	return false, nil
+	if err := RefreshFeed(store, userID, subscription, profile); err != nil {
+		return nil, err
+	}
+
+	return subscription, nil
 }
 
-func Initialize() {
-	NostrSdk = sdk.NewSystem(
-		sdk.WithRelayListRelays([]string{
-			"wss://nos.lol", "wss://nostr.mom", "wss://nostr.bitcoiner.social", "wss://relay.damus.io", "wss://nostr-pub.wellorder.net",
-		}, // some standard relays
-		),
-	)
-}
-
-func RefreshFeed(store *storage.Storage, userID int64, originalFeed *model.Feed) bool {
+func RefreshFeed(store *storage.Storage, userID int64, originalFeed *model.Feed, profile *sdk.ProfileMetadata) error {
 	ctx := context.Background()
-	if yes, profile := IsItNostr(originalFeed.FeedURL); yes {
-		relays := NostrSdk.FetchOutboxRelays(ctx, profile.PubKey, 3)
-		evchan := NostrSdk.Pool.SubManyEose(ctx, relays, nostr.Filters{
-			{
-				Authors: []string{profile.PubKey},
-				Kinds:   []int{nostr.KindArticle},
-				Limit:   32,
-			},
-		})
-		updatedFeed := originalFeed
-		for event := range evchan {
 
-			publishedAt := event.CreatedAt.Time()
-			if publishedAtTag := event.Tags.GetFirst([]string{"published_at"}); publishedAtTag != nil && len(*publishedAtTag) >= 2 {
-				i, err := strconv.ParseInt((*publishedAtTag)[1], 10, 64)
-				if err != nil {
-					publishedAt = time.Unix(i, 0)
-				}
-			}
+	fmt.Println("refreshing feed", userID, originalFeed)
+	relays := NostrSdk.FetchOutboxRelays(ctx, profile.PubKey, 3)
+	evchan := NostrSdk.Pool.SubManyEose(ctx, relays, nostr.Filters{
+		{
+			Authors: []string{profile.PubKey},
+			Kinds:   []int{nostr.KindArticle},
+			Limit:   32,
+		},
+	})
+	updatedFeed := originalFeed
+	for event := range evchan {
 
-			naddr, err := nip19.EncodeEntity(event.PubKey, event.Kind, event.Tags.GetD(), relays)
+		publishedAt := event.CreatedAt.Time()
+		if publishedAtTag := event.Tags.GetFirst([]string{"published_at"}); publishedAtTag != nil && len(*publishedAtTag) >= 2 {
+			i, err := strconv.ParseInt((*publishedAtTag)[1], 10, 64)
 			if err != nil {
-				continue
+				publishedAt = time.Unix(i, 0)
 			}
-
-			title := ""
-			titleTag := event.Tags.GetFirst([]string{"title"})
-			if titleTag != nil && len(*titleTag) >= 2 {
-				title = (*titleTag)[1]
-			}
-
-			// format content from markdown to html
-			entry := &model.Entry{
-				Date:    publishedAt,
-				Title:   title,
-				Content: event.Content,
-				URL:     fmt.Sprintf("https://njump.me/%s", naddr),
-				Hash:    fmt.Sprintf("nostr:%s:%s", event.PubKey, event.Tags.GetD()),
-			}
-
-			rewrite.Rewriter(entry.URL, entry, "parse_markdown")
-
-			updatedFeed.Entries = append(updatedFeed.Entries, entry)
-
 		}
 
-		processor.ProcessFeedEntries(store, updatedFeed, userID, true)
-
-		_, storeErr := store.RefreshFeedEntries(originalFeed.UserID, originalFeed.ID, updatedFeed.Entries, false)
-		if storeErr != nil {
-			// TODO: Error handling
-			return false
+		naddr, err := nip19.EncodeEntity(event.PubKey, event.Kind, event.Tags.GetD(), relays)
+		if err != nil {
+			continue
 		}
 
-		return true
+		title := ""
+		titleTag := event.Tags.GetFirst([]string{"title"})
+		if titleTag != nil && len(*titleTag) >= 2 {
+			title = (*titleTag)[1]
+		}
+
+		// format content from markdown to html
+		entry := &model.Entry{
+			Date:    publishedAt,
+			Title:   title,
+			Content: event.Content,
+			URL:     fmt.Sprintf("https://njump.me/%s", naddr),
+			Hash:    fmt.Sprintf("nostr:%s:%s", event.PubKey, event.Tags.GetD()),
+		}
+
+		rewrite.Rewriter(entry.URL, entry, "parse_markdown")
+
+		updatedFeed.Entries = append(updatedFeed.Entries, entry)
+
 	}
-	return false
+
+	processor.ProcessFeedEntries(store, updatedFeed, userID, true)
+
+	_, err := store.RefreshFeedEntries(originalFeed.UserID, originalFeed.ID, updatedFeed.Entries, false)
+	if err != nil {
+		return fmt.Errorf("failed to store refreshed items: %w", err)
+	}
+
+	return nil
 }
 
 func IsItNostr(candidateUrl string) (bool, *sdk.ProfileMetadata) {
 	url := candidateUrl
 	ctx := context.Background()
-	if NostrSdk == nil {
-		Initialize()
-	}
 
 	// check for nostr url prefixes
 	hasNostrPrefix := false

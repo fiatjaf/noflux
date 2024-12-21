@@ -26,9 +26,7 @@ import (
 	"golang.org/x/net/html/charset"
 )
 
-var (
-	youtubeChannelRegex = regexp.MustCompile(`channel/(.*)$`)
-)
+var youtubeChannelRegex = regexp.MustCompile(`channel/(.*)$`)
 
 type SubscriptionFinder struct {
 	requestBuilder   *fetcher.RequestBuilder
@@ -59,12 +57,10 @@ func nostrFindSubscription(url string) (bool, Subscriptions) {
 	}
 
 	nprofile := profile.Nprofile(ctx, nostr.NostrSdk, 3)
-
 	return true, Subscriptions{NewSubscription(profile.Name, nprofile, parser.FormatUnknown)}
 }
 
 func (f *SubscriptionFinder) FindSubscriptions(websiteURL, rssBridgeURL string) (Subscriptions, *locale.LocalizedErrorWrapper) {
-
 	// Find a nostr subscription
 	if nostr, subscriptions := nostrFindSubscription(websiteURL); nostr {
 		return subscriptions, nil

@@ -105,13 +105,15 @@ func CreateFeed(store *storage.Storage, userID int64, feedCreationRequest *model
 		return nil, locale.NewLocalizedErrorWrapper(ErrCategoryNotFound, "error.category_not_found")
 	}
 
-	if nostr, subscription := nostr.CreateFeed(store, userID, feedCreationRequest); nostr {
-
-		// Icon refresh here for now
-		iconChecker := icon.NewIconChecker(store, subscription)
-		iconChecker.UpdateOrCreateFeedIcon()
-
-		return subscription, nil
+	if ok, profile := nostr.IsItNostr(feedCreationRequest.FeedURL); ok {
+		if subscription, err := nostr.CreateFeed(store, userID, feedCreationRequest, profile); err != nil {
+			return nil, locale.NewLocalizedErrorWrapper(err, "error.feed_not_found")
+		} else {
+			// Icon refresh here for now
+			iconChecker := icon.NewIconChecker(store, subscription)
+			iconChecker.UpdateOrCreateFeedIcon()
+			return subscription, nil
+		}
 	}
 
 	requestBuilder := fetcher.NewRequestBuilder()
@@ -214,13 +216,16 @@ func RefreshFeed(store *storage.Storage, userID, feedID int64, forceRefresh bool
 		}
 	}
 
-	// TODO: this is probably not the best place to implement this
-	if nostr := nostr.RefreshFeed(store, userID, originalFeed); nostr {
-		return nil
-	}
-
 	originalFeed.CheckedNow()
 	originalFeed.ScheduleNextCheck(weeklyEntryCount, refreshDelayInMinutes)
+
+	if ok, profile := nostr.IsItNostr(originalFeed.FeedURL); ok {
+		err := nostr.RefreshFeed(store, userID, originalFeed, profile)
+		if err != nil {
+			return locale.NewLocalizedErrorWrapper(err, "error.feed_not_found")
+		}
+		return nil
+	}
 
 	requestBuilder := fetcher.NewRequestBuilder()
 	requestBuilder.WithUsernameAndPassword(originalFeed.Username, originalFeed.Password)
