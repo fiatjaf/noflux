@@ -23,7 +23,7 @@ services:
       db:
         condition: service_healthy
     expose:
-      - "8080"
+      - "8064"
     environment:
       - DATABASE_URL=postgres://miniflux:secret@db/miniflux?sslmode=disable
       - RUN_MIGRATIONS=1

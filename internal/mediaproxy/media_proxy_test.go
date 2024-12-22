@@ -273,7 +273,7 @@ func TestProxyFilterWithHttpsAlwaysAndIncorrectCustomProxyServer(t *testing.T) {
 	os.Clearenv()
 	os.Setenv("PROXY_OPTION", "all")
 	os.Setenv("PROXY_MEDIA_TYPES", "image")
-	os.Setenv("PROXY_URL", "http://:8080example.com")
+	os.Setenv("PROXY_URL", "http://:8064example.com")
 
 	var err error
 	parser := config.NewParser()

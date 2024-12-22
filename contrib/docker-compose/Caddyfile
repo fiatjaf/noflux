@@ -1,2 +1,2 @@
 miniflux.example.org
-reverse_proxy miniflux:8080
+reverse_proxy miniflux:8064

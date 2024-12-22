@@ -20,4 +20,4 @@ Installs and configures Miniflux v2 with ansible
 ##### Password Miniflux Admin
     miniflux_admin_passwort: hallowelt
 ##### Port for Miniflux Frontend
-    miniflux_port: 8080
+    miniflux_port: 8064
