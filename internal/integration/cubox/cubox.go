@@ -1,9 +1,9 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 // Cubox API documentation: https://help.cubox.cc/save/api/
 
-package cubox // import "miniflux.app/v2/internal/integration/cubox"
+package cubox // import "github.com/fiatjaf/noflux/internal/integration/cubox"
 
 import (
 	"bytes"
@@ -14,7 +14,7 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -49,7 +49,7 @@ func (c *Client) SaveLink(entryURL string) error {
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	response, err := http.DefaultClient.Do(request)
 	if err != nil {

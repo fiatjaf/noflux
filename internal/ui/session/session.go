@@ -1,13 +1,13 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package session // import "miniflux.app/v2/internal/ui/session"
+package session // import "github.com/fiatjaf/noflux/internal/ui/session"
 
 import (
 	"time"
 
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 // Session handles session data.

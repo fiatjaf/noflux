@@ -5,7 +5,7 @@ set -e
 case "$1" in
     configure)
         adduser --system --disabled-password --disabled-login --home /var/empty \
-                --no-create-home --quiet --force-badname --group miniflux
+                --no-create-home --quiet --force-badname --group noflux
         ;;
 esac
 

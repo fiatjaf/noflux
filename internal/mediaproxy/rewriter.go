@@ -1,15 +1,15 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package mediaproxy // import "miniflux.app/v2/internal/mediaproxy"
+package mediaproxy // import "github.com/fiatjaf/noflux/internal/mediaproxy"
 
 import (
 	"slices"
 	"strings"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/reader/sanitizer"
-	"miniflux.app/v2/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/reader/sanitizer"
+	"github.com/fiatjaf/noflux/internal/urllib"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/mux"

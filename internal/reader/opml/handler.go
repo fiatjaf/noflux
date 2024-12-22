@@ -1,14 +1,14 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package opml // import "miniflux.app/v2/internal/reader/opml"
+package opml // import "github.com/fiatjaf/noflux/internal/reader/opml"
 
 import (
 	"fmt"
 	"io"
 
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 // Handler handles the logic for OPML import/export.

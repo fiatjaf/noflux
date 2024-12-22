@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package api // import "miniflux.app/v2/internal/api"
+package api // import "github.com/fiatjaf/noflux/internal/api"
 
 import (
 	json_parser "encoding/json"
@@ -9,12 +9,12 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/json"
-	"miniflux.app/v2/internal/model"
-	feedHandler "miniflux.app/v2/internal/reader/handler"
-	"miniflux.app/v2/internal/validator"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/json"
+	"github.com/fiatjaf/noflux/internal/model"
+	feedHandler "github.com/fiatjaf/noflux/internal/reader/handler"
+	"github.com/fiatjaf/noflux/internal/validator"
 )
 
 func (h *handler) createFeed(w http.ResponseWriter, r *http.Request) {

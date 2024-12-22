@@ -1,23 +1,23 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package handler // import "miniflux.app/v2/internal/reader/handler"
+package handler // import "github.com/fiatjaf/noflux/internal/reader/handler"
 
 import (
 	"bytes"
 	"errors"
 	"log/slog"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/integration"
-	"miniflux.app/v2/internal/locale"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/nostr"
-	"miniflux.app/v2/internal/reader/fetcher"
-	"miniflux.app/v2/internal/reader/icon"
-	"miniflux.app/v2/internal/reader/parser"
-	"miniflux.app/v2/internal/reader/processor"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/integration"
+	"github.com/fiatjaf/noflux/internal/locale"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/nostr"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
+	"github.com/fiatjaf/noflux/internal/reader/icon"
+	"github.com/fiatjaf/noflux/internal/reader/parser"
+	"github.com/fiatjaf/noflux/internal/reader/processor"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 var (

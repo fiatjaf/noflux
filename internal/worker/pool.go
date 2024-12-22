@@ -1,11 +1,11 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package worker // import "miniflux.app/v2/internal/worker"
+package worker // import "github.com/fiatjaf/noflux/internal/worker"
 
 import (
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 // Pool handles a pool of workers.

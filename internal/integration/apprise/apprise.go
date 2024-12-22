@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 package apprise
@@ -11,9 +11,9 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/urllib"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -54,7 +54,7 @@ func (c *Client) SendNotification(feed *model.Feed, entries model.Entries) error
 		}
 
 		request.Header.Set("Content-Type", "application/json")
-		request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+		request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 		slog.Debug("Sending Apprise notification",
 			slog.String("apprise_url", c.baseURL),

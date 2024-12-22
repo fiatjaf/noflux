@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 package processor
@@ -12,9 +12,9 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/fetcher"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
 )
 
 func shouldFetchOdyseeWatchTime(entry *model.Entry) bool {

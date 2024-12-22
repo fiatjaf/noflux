@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package instapaper // import "miniflux.app/v2/internal/integration/instapaper"
+package instapaper // import "github.com/fiatjaf/noflux/internal/integration/instapaper"
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"time"
 
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -40,7 +40,7 @@ func (c *Client) AddURL(entryURL, entryTitle string) error {
 
 	request.SetBasicAuth(c.username, c.password)
 	request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)

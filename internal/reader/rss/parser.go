@@ -1,14 +1,14 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package rss // import "miniflux.app/v2/internal/reader/rss"
+package rss // import "github.com/fiatjaf/noflux/internal/reader/rss"
 
 import (
 	"fmt"
 	"io"
 
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/xml"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/xml"
 )
 
 // Parse returns a normalized feed struct from a RSS feed.

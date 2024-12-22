@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package nunuxkeeper // import "miniflux.app/v2/internal/integration/nunuxkeeper"
+package nunuxkeeper // import "github.com/fiatjaf/noflux/internal/integration/nunuxkeeper"
 
 import (
 	"bytes"
@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/urllib"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -52,7 +52,7 @@ func (c *Client) AddEntry(entryURL, entryTitle, entryContent string) error {
 
 	request.SetBasicAuth("api", c.apiKey)
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)

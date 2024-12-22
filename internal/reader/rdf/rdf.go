@@ -1,12 +1,12 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package rdf // import "miniflux.app/v2/internal/reader/rdf"
+package rdf // import "github.com/fiatjaf/noflux/internal/reader/rdf"
 
 import (
 	"encoding/xml"
 
-	"miniflux.app/v2/internal/reader/dublincore"
+	"github.com/fiatjaf/noflux/internal/reader/dublincore"
 )
 
 // RDF sepcs: https://web.resource.org/rss/1.0/spec

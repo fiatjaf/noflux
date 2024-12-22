@@ -1,10 +1,10 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package rss // import "miniflux.app/v2/internal/reader/rss"
+package rss // import "github.com/fiatjaf/noflux/internal/reader/rss"
 
 import (
-	"miniflux.app/v2/internal/reader/atom"
+	"github.com/fiatjaf/noflux/internal/reader/atom"
 )
 
 type AtomAuthor struct {

@@ -1,13 +1,13 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package metric // import "miniflux.app/v2/internal/metric"
+package metric // import "github.com/fiatjaf/noflux/internal/metric"
 
 import (
 	"log/slog"
 	"time"
 
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/storage"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -16,7 +16,7 @@ import (
 var (
 	BackgroundFeedRefreshDuration = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "background_feed_refresh_duration",
 			Help:      "Processing time to refresh feeds from the background workers",
 			Buckets:   prometheus.LinearBuckets(1, 2, 15),
@@ -26,7 +26,7 @@ var (
 
 	ScraperRequestDuration = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "scraper_request_duration",
 			Help:      "Web scraper request duration",
 			Buckets:   prometheus.LinearBuckets(1, 2, 25),
@@ -36,7 +36,7 @@ var (
 
 	ArchiveEntriesDuration = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "archive_entries_duration",
 			Help:      "Archive entries duration",
 			Buckets:   prometheus.LinearBuckets(1, 2, 30),
@@ -46,7 +46,7 @@ var (
 
 	usersGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "users",
 			Help:      "Number of users",
 		},
@@ -54,7 +54,7 @@ var (
 
 	feedsGauge = prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "feeds",
 			Help:      "Number of feeds by status",
 		},
@@ -63,7 +63,7 @@ var (
 
 	brokenFeedsGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "broken_feeds",
 			Help:      "Number of broken feeds",
 		},
@@ -71,7 +71,7 @@ var (
 
 	entriesGauge = prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "entries",
 			Help:      "Number of entries by status",
 		},
@@ -80,7 +80,7 @@ var (
 
 	dbOpenConnectionsGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_open_connections",
 			Help:      "The number of established connections both in use and idle",
 		},
@@ -88,7 +88,7 @@ var (
 
 	dbConnectionsInUseGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_connections_in_use",
 			Help:      "The number of connections currently in use",
 		},
@@ -96,7 +96,7 @@ var (
 
 	dbConnectionsIdleGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_connections_idle",
 			Help:      "The number of idle connections",
 		},
@@ -104,7 +104,7 @@ var (
 
 	dbConnectionsWaitCountGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_connections_wait_count",
 			Help:      "The total number of connections waited for",
 		},
@@ -112,7 +112,7 @@ var (
 
 	dbConnectionsMaxIdleClosedGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_connections_max_idle_closed",
 			Help:      "The total number of connections closed due to SetMaxIdleConns",
 		},
@@ -120,7 +120,7 @@ var (
 
 	dbConnectionsMaxIdleTimeClosedGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_connections_max_idle_time_closed",
 			Help:      "The total number of connections closed due to SetConnMaxIdleTime",
 		},
@@ -128,7 +128,7 @@ var (
 
 	dbConnectionsMaxLifetimeClosedGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "miniflux",
+			Namespace: "noflux",
 			Name:      "db_connections_max_lifetime_closed",
 			Help:      "The total number of connections closed due to SetConnMaxLifetime",
 		},

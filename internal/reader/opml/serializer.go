@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package opml // import "miniflux.app/v2/internal/reader/opml"
+package opml // import "github.com/fiatjaf/noflux/internal/reader/opml"
 
 import (
 	"bufio"
@@ -34,7 +34,7 @@ func Serialize(subscriptions SubcriptionList) string {
 func convertSubscriptionsToOPML(subscriptions SubcriptionList) *opmlDocument {
 	opmlDocument := NewOPMLDocument()
 	opmlDocument.Version = "2.0"
-	opmlDocument.Header.Title = "Miniflux"
+	opmlDocument.Header.Title = "Noflux"
 	opmlDocument.Header.DateCreated = time.Now().Format("Mon, 02 Jan 2006 15:04:05 MST")
 
 	groupedSubs := groupSubscriptionsByFeed(subscriptions)

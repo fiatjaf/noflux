@@ -1,17 +1,17 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package cli // import "miniflux.app/v2/internal/cli"
+package cli // import "github.com/fiatjaf/noflux/internal/cli"
 
 import (
 	"log/slog"
 	"sync"
 	"time"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/model"
-	feedHandler "miniflux.app/v2/internal/reader/handler"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/model"
+	feedHandler "github.com/fiatjaf/noflux/internal/reader/handler"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 func refreshFeeds(store *storage.Storage) {

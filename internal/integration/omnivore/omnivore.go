@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package omnivore // import "miniflux.app/v2/internal/integration/omnivore"
+package omnivore // import "github.com/fiatjaf/noflux/internal/integration/omnivore"
 
 import (
 	"bytes"
@@ -11,8 +11,8 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -95,7 +95,7 @@ func (c *client) SaveUrl(url string) error {
 
 	req.Header.Set("Authorization", c.apiToken)
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	req.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	resp, err := c.wrapped.Do(req)
 	if err != nil {

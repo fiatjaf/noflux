@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package pocket // import "miniflux.app/v2/internal/integration/pocket"
+package pocket // import "github.com/fiatjaf/noflux/internal/integration/pocket"
 
 import (
 	"bytes"
@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 // Connector manages the authorization flow with Pocket to get a personal access token.
@@ -38,7 +38,7 @@ func (c *Connector) RequestToken(redirectURL string) (string, error) {
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("X-Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)
@@ -78,7 +78,7 @@ func (c *Connector) AccessToken(requestToken string) (string, error) {
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("X-Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)

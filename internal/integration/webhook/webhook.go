@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package webhook // import "miniflux.app/v2/internal/integration/webhook"
+package webhook // import "github.com/fiatjaf/noflux/internal/integration/webhook"
 
 import (
 	"bytes"
@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const (
@@ -127,9 +127,9 @@ func (c *Client) makeRequest(eventType string, payload any) error {
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
-	request.Header.Set("X-Miniflux-Signature", crypto.GenerateSHA256Hmac(c.webhookSecret, requestBody))
-	request.Header.Set("X-Miniflux-Event-Type", eventType)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
+	request.Header.Set("X-Noflux-Signature", crypto.GenerateSHA256Hmac(c.webhookSecret, requestBody))
+	request.Header.Set("X-Noflux-Event-Type", eventType)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)

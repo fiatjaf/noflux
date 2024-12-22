@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package dublincore // import "miniflux.app/v2/internal/reader/dublincore"
+package dublincore // import "github.com/fiatjaf/noflux/internal/reader/dublincore"
 
 type DublinCoreChannelElement struct {
 	DublinCoreCreator string `xml:"http://purl.org/dc/elements/1.1/ creator"`

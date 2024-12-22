@@ -1,12 +1,12 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package validator // import "miniflux.app/v2/internal/validator"
+package validator // import "github.com/fiatjaf/noflux/internal/validator"
 
 import (
 	"fmt"
 
-	"miniflux.app/v2/internal/model"
+	"github.com/fiatjaf/noflux/internal/model"
 )
 
 // ValidateEntriesStatusUpdateRequest validates a status update for a list of entries.

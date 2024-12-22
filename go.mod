@@ -1,4 +1,4 @@
-module miniflux.app/v2
+module github.com/fiatjaf/noflux
 
 go 1.23.3
 

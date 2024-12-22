@@ -1,13 +1,13 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package ui // import "miniflux.app/v2/internal/ui"
+package ui // import "github.com/fiatjaf/noflux/internal/ui"
 
 import (
 	"context"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/oauth2"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/oauth2"
 )
 
 func getOAuth2Manager(ctx context.Context) *oauth2.Manager {

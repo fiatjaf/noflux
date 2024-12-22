@@ -1,13 +1,13 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package sanitizer // import "miniflux.app/v2/internal/reader/sanitizer"
+package sanitizer // import "github.com/fiatjaf/noflux/internal/reader/sanitizer"
 
 import (
 	"os"
 	"testing"
 
-	"miniflux.app/v2/internal/config"
+	"github.com/fiatjaf/noflux/internal/config"
 )
 
 func TestMain(m *testing.M) {
@@ -17,9 +17,9 @@ func TestMain(m *testing.M) {
 }
 
 func BenchmarkSanitize(b *testing.B) {
-	var testCases = map[string][]string{
-		"miniflux_github.html":    {"https://github.com/miniflux/v2", ""},
-		"miniflux_wikipedia.html": {"https://fr.wikipedia.org/wiki/Miniflux", ""},
+	testCases := map[string][]string{
+		"noflux_github.html":    {"https://github.com/miniflux/v2", ""},
+		"noflux_wikipedia.html": {"https://fr.wikipedia.org/wiki/Miniflux", ""},
 	}
 	for filename := range testCases {
 		data, err := os.ReadFile("testdata/" + filename)
@@ -54,7 +54,7 @@ func TestImgWithWidthAndHeightAttribute(t *testing.T) {
 	}
 }
 
-func TestImgWithWidthAndHeightAttributeLargerThanMinifluxLayout(t *testing.T) {
+func TestImgWithWidthAndHeightAttributeLargerThanNofluxLayout(t *testing.T) {
 	input := `<img src="https://example.org/image.png" width="1200" height="675">`
 	expected := `<img src="https://example.org/image.png" loading="lazy">`
 	output := Sanitize("http://example.org/", input)

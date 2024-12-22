@@ -1,13 +1,13 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package cli // import "miniflux.app/v2/internal/cli"
+package cli // import "github.com/fiatjaf/noflux/internal/cli"
 
 import (
 	"fmt"
 
-	"miniflux.app/v2/internal/reader/opml"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/reader/opml"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 func exportUserFeeds(store *storage.Storage, username string) {

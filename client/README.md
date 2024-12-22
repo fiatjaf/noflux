@@ -1,15 +1,15 @@
-Miniflux API Client
+Noflux API Client
 ===================
 
-[![PkgGoDev](https://pkg.go.dev/badge/miniflux.app/v2/client)](https://pkg.go.dev/miniflux.app/v2/client)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/fiatjaf/noflux/client)](https://pkg.go.dev/github.com/fiatjaf/noflux/client)
 
-Client library for Miniflux REST API.
+Client library for Noflux REST API.
 
 Installation
 ------------
 
 ```bash
-go get -u miniflux.app/v2/client
+go get -u github.com/fiatjaf/noflux/client
 ```
 
 Example
@@ -22,15 +22,15 @@ import (
 	"fmt"
 	"os"
 
-	miniflux "miniflux.app/v2/client"
+	noflux "github.com/fiatjaf/noflux/client"
 )
 
 func main() {
     // Authentication with username/password:
-    client := miniflux.New("https://api.example.org", "admin", "secret")
+    client := noflux.New("https://api.example.org", "admin", "secret")
 
     // Authentication with an API Key:
-    client := miniflux.New("https://api.example.org", "my-secret-token")
+    client := noflux.New("https://api.example.org", "my-secret-token")
 
     // Fetch all feeds.
     feeds, err := client.Feeds()

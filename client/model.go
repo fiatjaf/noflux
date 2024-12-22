@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package client // import "miniflux.app/v2/client"
+package client // import "github.com/fiatjaf/noflux/client"
 
 import (
 	"fmt"
@@ -123,7 +123,7 @@ func (s Subscription) String() string {
 // Subscriptions represents a list of subscriptions.
 type Subscriptions []*Subscription
 
-// Feed represents a Miniflux feed.
+// Feed represents a Noflux feed.
 type Feed struct {
 	ID                          int64     `json:"id"`
 	UserID                      int64     `json:"user_id"`
@@ -296,7 +296,7 @@ type EntryResultSet struct {
 	Entries Entries `json:"entries"`
 }
 
-// VersionResponse represents the version and the build information of the Miniflux instance.
+// VersionResponse represents the version and the build information of the Noflux instance.
 type VersionResponse struct {
 	Version   string `json:"version"`
 	Commit    string `json:"commit"`

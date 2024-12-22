@@ -1,16 +1,16 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package ui // import "miniflux.app/v2/internal/ui"
+package ui // import "github.com/fiatjaf/noflux/internal/ui"
 
 import (
 	"net/http"
 
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/html"
-	"miniflux.app/v2/internal/ui/form"
-	"miniflux.app/v2/internal/ui/session"
-	"miniflux.app/v2/internal/ui/view"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/html"
+	"github.com/fiatjaf/noflux/internal/ui/form"
+	"github.com/fiatjaf/noflux/internal/ui/session"
+	"github.com/fiatjaf/noflux/internal/ui/view"
 )
 
 // EditUser shows the form to edit a user.

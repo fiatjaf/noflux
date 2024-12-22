@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package fetcher // import "miniflux.app/v2/internal/reader/fetcher"
+package fetcher // import "github.com/fiatjaf/noflux/internal/reader/fetcher"
 
 import (
 	"crypto/x509"
@@ -17,7 +17,7 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/locale"
+	"github.com/fiatjaf/noflux/internal/locale"
 )
 
 type ResponseHandler struct {

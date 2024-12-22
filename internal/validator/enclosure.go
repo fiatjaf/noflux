@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 package validator
@@ -6,7 +6,7 @@ package validator
 import (
 	"fmt"
 
-	"miniflux.app/v2/internal/model"
+	"github.com/fiatjaf/noflux/internal/model"
 )
 
 func ValidateEnclosureUpdateRequest(request *model.EnclosureUpdateRequest) error {

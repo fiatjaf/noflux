@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package model // import "miniflux.app/v2/internal/model"
+package model // import "github.com/fiatjaf/noflux/internal/model"
 
 func CategoriesSortingOptions() map[string]string {
 	return map[string]string{

@@ -1,16 +1,16 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package view // import "miniflux.app/v2/internal/ui/view"
+package view // import "github.com/fiatjaf/noflux/internal/ui/view"
 
 import (
 	"net/http"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/template"
-	"miniflux.app/v2/internal/ui/session"
-	"miniflux.app/v2/internal/ui/static"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/template"
+	"github.com/fiatjaf/noflux/internal/ui/session"
+	"github.com/fiatjaf/noflux/internal/ui/static"
 )
 
 // View wraps template argument building.

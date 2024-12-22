@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 // Package readingtime provides a function to estimate the reading time of an article.
@@ -9,7 +9,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"miniflux.app/v2/internal/reader/sanitizer"
+	"github.com/fiatjaf/noflux/internal/reader/sanitizer"
 
 	"github.com/abadojack/whatlanggo"
 )

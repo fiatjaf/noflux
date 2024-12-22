@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package pinboard // import "miniflux.app/v2/internal/integration/pinboard"
+package pinboard // import "github.com/fiatjaf/noflux/internal/integration/pinboard"
 
 import (
 	"encoding/xml"
@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"time"
 
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 var errPostNotFound = fmt.Errorf("pinboard: post not found")
@@ -58,7 +58,7 @@ func (c *Client) CreateBookmark(entryURL, entryTitle, pinboardTags string, markA
 	}
 
 	request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)
@@ -91,7 +91,7 @@ func (c *Client) getBookmark(entryURL string) (*Post, error) {
 	}
 
 	request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)

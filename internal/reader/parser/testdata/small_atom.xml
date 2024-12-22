@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
-  <id>tag:github.com,2008:/miniflux/v2/commits/main</id>
-  <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commits/main"/>
-  <link type="application/atom+xml" rel="self" href="https://github.com/miniflux/v2/commits/main.atom"/>
+  <id>tag:github.com,2008:/fiatjaf/noflux/commits/main</id>
+  <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commits/main"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/fiatjaf/noflux/commits/main.atom"/>
   <title>Recent Commits to v2:main</title>
   <updated>2024-03-12T05:30:27Z</updated>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/6d97f8b4582414b6ce69467656824690057d4793</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/6d97f8b4582414b6ce69467656824690057d4793"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/6d97f8b4582414b6ce69467656824690057d4793"/>
     <title>
         Parse podcast categories
     </title>
@@ -23,7 +23,7 @@
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/f8e50947f2885047155a8070dddab133a5c685c2</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/f8e50947f2885047155a8070dddab133a5c685c2"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/f8e50947f2885047155a8070dddab133a5c685c2"/>
     <title>
         Move iTunes and GooglePlay XML definitions to their own packages
     </title>
@@ -39,7 +39,7 @@
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/9a637ce95e05459adc4712027e6a07eaabcfe657</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/9a637ce95e05459adc4712027e6a07eaabcfe657"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/9a637ce95e05459adc4712027e6a07eaabcfe657"/>
     <title>
         Refactor RSS parser to use default namespace
     </title>
@@ -57,7 +57,7 @@ This change avoid some limitations of the Go XML parser regarding XML namespaces
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/d3a85b049b14d4a4ddd6b813134b2abd45fe5e8d</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/d3a85b049b14d4a4ddd6b813134b2abd45fe5e8d"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/d3a85b049b14d4a4ddd6b813134b2abd45fe5e8d"/>
     <title>
         jsminifier: set JavaScript version
     </title>
@@ -73,7 +73,7 @@ This change avoid some limitations of the Go XML parser regarding XML namespaces
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/5bcb37901c60463b27e1211e0f68295f213b19e6</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/5bcb37901c60463b27e1211e0f68295f213b19e6"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/5bcb37901c60463b27e1211e0f68295f213b19e6"/>
     <title>
         Use crypto.GenerateRandomBytes instead of doing it by hand
     </title>
@@ -92,7 +92,7 @@ cryptographic error conditions.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/9c8a7dfffe2f4596dcbde2c923a7539914bb252f</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/9c8a7dfffe2f4596dcbde2c923a7539914bb252f"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/9c8a7dfffe2f4596dcbde2c923a7539914bb252f"/>
     <title>
         Make use of HashFromBytes everywhere
     </title>
@@ -110,7 +110,7 @@ It feels a bit silly to have a function and to not make use of it.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/74e4032ffc9faad4fec602f283a32d2af8dec47e</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/74e4032ffc9faad4fec602f283a32d2af8dec47e"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/74e4032ffc9faad4fec602f283a32d2af8dec47e"/>
     <title>
         Small refactor of app.js
     </title>
@@ -132,7 +132,7 @@ It feels a bit silly to have a function and to not make use of it.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/fd1fee852cb35fa0f5b0ed6dc0c23b4a6ce368c3</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/fd1fee852cb35fa0f5b0ed6dc0c23b4a6ce368c3"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/fd1fee852cb35fa0f5b0ed6dc0c23b4a6ce368c3"/>
     <title>
         Simplify DomHelper.getVisibleElements
     </title>
@@ -150,7 +150,7 @@ Use a `filter` instead of a loop with an index.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/c51a3270da1f6af796b7d23fa4b434ccf11818e7</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/c51a3270da1f6af796b7d23fa4b434ccf11818e7"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/c51a3270da1f6af796b7d23fa4b434ccf11818e7"/>
     <title>
         GitHub Actions: Add basic ESLinter checks
     </title>
@@ -166,7 +166,7 @@ Use a `filter` instead of a loop with an index.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/45fa641d26a5f68e663aa9af72e97523d8d63c1e</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/45fa641d26a5f68e663aa9af72e97523d8d63c1e"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/45fa641d26a5f68e663aa9af72e97523d8d63c1e"/>
     <title>
         Fix JavaScript linter path in GitHub Actions
     </title>
@@ -182,7 +182,7 @@ Use a `filter` instead of a loop with an index.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/fd8f25916b025a92b1b8349ef9d0acdb832a9e8e</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/fd8f25916b025a92b1b8349ef9d0acdb832a9e8e"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/fd8f25916b025a92b1b8349ef9d0acdb832a9e8e"/>
     <title>
         First steps towards trusted-types support
     </title>
@@ -202,7 +202,7 @@ https://github.com/w3c/webappsec-csp/issues/277&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/826e4d654f511ea8d1d385bdc09cbed69ff6a70f</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/826e4d654f511ea8d1d385bdc09cbed69ff6a70f"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/826e4d654f511ea8d1d385bdc09cbed69ff6a70f"/>
     <title>
         Replace DomHelper.findParent with .closest
     </title>
@@ -220,7 +220,7 @@ See https://developer.mozilla.org/en-US/docs/Web/API/Element/closest&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/d9d17f0d69d1dafb3bd9d81bf9fc27df3def4f4c</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/d9d17f0d69d1dafb3bd9d81bf9fc27df3def4f4c"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/d9d17f0d69d1dafb3bd9d81bf9fc27df3def4f4c"/>
     <title>
         Use a `Set` instead of an array in a KeyboardHandler&#39;s member
     </title>
@@ -241,7 +241,7 @@ significant, let&amp;#39;s future-proof the performances and use a `Set` instead
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/eaaeb68474ff194f682e9521a848d7ab2c89348e</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/eaaeb68474ff194f682e9521a848d7ab2c89348e"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/eaaeb68474ff194f682e9521a848d7ab2c89348e"/>
     <title>
         Fix conditions to publish packages in GitHub workflows
     </title>
@@ -257,7 +257,7 @@ significant, let&amp;#39;s future-proof the performances and use a `Set` instead
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/382885f14403526adfa6c303927889c76fd5a1eb</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/382885f14403526adfa6c303927889c76fd5a1eb"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/382885f14403526adfa6c303927889c76fd5a1eb"/>
     <title>
         Update changeLog
     </title>
@@ -273,7 +273,7 @@ significant, let&amp;#39;s future-proof the performances and use a `Set` instead
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/0f7b047b0a81253b6d146e05d561545303016b74</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/0f7b047b0a81253b6d146e05d561545303016b74"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/0f7b047b0a81253b6d146e05d561545303016b74"/>
     <title>
         Bump github.com/go-jose/go-jose/v3 from 3.0.1 to 3.0.3
     </title>
@@ -302,7 +302,7 @@ Signed-off-by: dependabot[bot] &amp;lt;support@github.com&amp;gt;&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/a074773e6c5d3b2066094cbac0502094aa364713</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/a074773e6c5d3b2066094cbac0502094aa364713"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/a074773e6c5d3b2066094cbac0502094aa364713"/>
     <title>
         Use an io.ReadSeeker instead of an io.Reader to parse feeds
     </title>
@@ -323,7 +323,7 @@ should enable more follow-up simplifications.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/3d0126be0b8a603401b7593250f80b0a8042b995</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/3d0126be0b8a603401b7593250f80b0a8042b995"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/3d0126be0b8a603401b7593250f80b0a8042b995"/>
     <title>
         Speed the sanitizer up a bit, again
     </title>
@@ -351,7 +351,7 @@ should enable more follow-up simplifications.&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/eda2e2f3f5c278e44e2def72caedc33667a0fb6c</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/eda2e2f3f5c278e44e2def72caedc33667a0fb6c"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/eda2e2f3f5c278e44e2def72caedc33667a0fb6c"/>
     <title>
         Bump golang.org/x/oauth2 from 0.17.0 to 0.18.0
     </title>
@@ -379,7 +379,7 @@ Signed-off-by: dependabot[bot] &amp;lt;support@github.com&amp;gt;&lt;/pre&gt;
   </entry>
   <entry>
     <id>tag:github.com,2008:Grit::Commit/111e3f2106646cd29f7f74c0102f2a570c598e2e</id>
-    <link type="text/html" rel="alternate" href="https://github.com/miniflux/v2/commit/111e3f2106646cd29f7f74c0102f2a570c598e2e"/>
+    <link type="text/html" rel="alternate" href="https://github.com/fiatjaf/noflux/commit/111e3f2106646cd29f7f74c0102f2a570c598e2e"/>
     <title>
         Reuse a Reader instead of copying to a buffer when parsing an atom feed
     </title>

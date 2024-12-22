@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package ui // import "miniflux.app/v2/internal/ui"
+package ui // import "github.com/fiatjaf/noflux/internal/ui"
 
 import (
 	"bytes"
@@ -14,17 +14,17 @@ import (
 	"github.com/go-webauthn/webauthn/protocol"
 	"github.com/go-webauthn/webauthn/webauthn"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/http/cookie"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/html"
-	"miniflux.app/v2/internal/http/response/json"
-	"miniflux.app/v2/internal/http/route"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/ui/form"
-	"miniflux.app/v2/internal/ui/session"
-	"miniflux.app/v2/internal/ui/view"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/http/cookie"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/html"
+	"github.com/fiatjaf/noflux/internal/http/response/json"
+	"github.com/fiatjaf/noflux/internal/http/route"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/ui/form"
+	"github.com/fiatjaf/noflux/internal/ui/session"
+	"github.com/fiatjaf/noflux/internal/ui/view"
 )
 
 type WebAuthnUser struct {
@@ -63,7 +63,7 @@ func newWebAuthn() (*webauthn.WebAuthn, error) {
 		return nil, err
 	}
 	return webauthn.New(&webauthn.Config{
-		RPDisplayName: "Miniflux",
+		RPDisplayName: "Noflux",
 		RPID:          url.Hostname(),
 		RPOrigins:     []string{config.Opts.RootURL()},
 	})
@@ -238,7 +238,7 @@ func (h *handler) finishLogin(w http.ResponseWriter, r *http.Request) {
 		sessionData.SessionData.UserID = parsedResponse.Response.UserHandle
 		webAuthUser := WebAuthnUser{user, parsedResponse.Response.UserHandle, storedCredentials}
 
-		// Since go-webauthn v0.11.0, the backup eligibility flag is strictly validated, but Miniflux does not store this flag.
+		// Since go-webauthn v0.11.0, the backup eligibility flag is strictly validated, but Noflux does not store this flag.
 		// This workaround set the flag based on the parsed response, and avoid "BackupEligible flag inconsistency detected during login validation" error.
 		// See https://github.com/go-webauthn/webauthn/pull/240
 		for index := range webAuthUser.Credentials {
@@ -289,7 +289,7 @@ func (h *handler) finishLogin(w http.ResponseWriter, r *http.Request) {
 				return nil, fmt.Errorf("no user found for handle %x", userHandle)
 			}
 
-			// Since go-webauthn v0.11.0, the backup eligibility flag is strictly validated, but Miniflux does not store this flag.
+			// Since go-webauthn v0.11.0, the backup eligibility flag is strictly validated, but Noflux does not store this flag.
 			// This workaround set the flag based on the parsed response, and avoid "BackupEligible flag inconsistency detected during login validation" error.
 			// See https://github.com/go-webauthn/webauthn/pull/240
 			matchingCredential.Credential.Flags.BackupEligible = parsedResponse.Response.AuthenticatorData.Flags.HasBackupEligible()

@@ -1,14 +1,14 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package form // import "miniflux.app/v2/internal/ui/form"
+package form // import "github.com/fiatjaf/noflux/internal/ui/form"
 
 import (
 	"net/http"
 	"strconv"
 
-	"miniflux.app/v2/internal/locale"
-	"miniflux.app/v2/internal/validator"
+	"github.com/fiatjaf/noflux/internal/locale"
+	"github.com/fiatjaf/noflux/internal/validator"
 )
 
 // SubscriptionForm represents the subscription form.

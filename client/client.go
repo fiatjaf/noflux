@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package client // import "miniflux.app/v2/client"
+package client // import "github.com/fiatjaf/noflux/client"
 
 import (
 	"encoding/json"
@@ -17,13 +17,13 @@ type Client struct {
 	request *request
 }
 
-// New returns a new Miniflux client.
+// New returns a new Noflux client.
 // Deprecated: use NewClient instead.
 func New(endpoint string, credentials ...string) *Client {
 	return NewClient(endpoint, credentials...)
 }
 
-// NewClient returns a new Miniflux client.
+// NewClient returns a new Noflux client.
 func NewClient(endpoint string, credentials ...string) *Client {
 	// Trim trailing slashes and /v1 from the endpoint.
 	endpoint = strings.TrimSuffix(endpoint, "/")
@@ -42,23 +42,23 @@ func NewClient(endpoint string, credentials ...string) *Client {
 func (c *Client) Healthcheck() error {
 	body, err := c.request.Get("/healthcheck")
 	if err != nil {
-		return fmt.Errorf("miniflux: unable to perform healthcheck: %w", err)
+		return fmt.Errorf("noflux: unable to perform healthcheck: %w", err)
 	}
 	defer body.Close()
 
 	responseBodyContent, err := io.ReadAll(body)
 	if err != nil {
-		return fmt.Errorf("miniflux: unable to read healthcheck response: %w", err)
+		return fmt.Errorf("noflux: unable to read healthcheck response: %w", err)
 	}
 
 	if string(responseBodyContent) != "OK" {
-		return fmt.Errorf("miniflux: invalid healthcheck response: %q", responseBodyContent)
+		return fmt.Errorf("noflux: invalid healthcheck response: %q", responseBodyContent)
 	}
 
 	return nil
 }
 
-// Version returns the version of the Miniflux instance.
+// Version returns the version of the Noflux instance.
 func (c *Client) Version() (*VersionResponse, error) {
 	body, err := c.request.Get("/v1/version")
 	if err != nil {
@@ -68,7 +68,7 @@ func (c *Client) Version() (*VersionResponse, error) {
 
 	var versionResponse *VersionResponse
 	if err := json.NewDecoder(body).Decode(&versionResponse); err != nil {
-		return nil, fmt.Errorf("miniflux: json error (%v)", err)
+		return nil, fmt.Errorf("noflux: json error (%v)", err)
 	}
 
 	return versionResponse, nil
@@ -84,7 +84,7 @@ func (c *Client) Me() (*User, error) {
 
 	var user *User
 	if err := json.NewDecoder(body).Decode(&user); err != nil {
-		return nil, fmt.Errorf("miniflux: json error (%v)", err)
+		return nil, fmt.Errorf("noflux: json error (%v)", err)
 	}
 
 	return user, nil
@@ -100,7 +100,7 @@ func (c *Client) Users() (Users, error) {
 
 	var users Users
 	if err := json.NewDecoder(body).Decode(&users); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return users, nil
@@ -116,7 +116,7 @@ func (c *Client) UserByID(userID int64) (*User, error) {
 
 	var user User
 	if err := json.NewDecoder(body).Decode(&user); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return &user, nil
@@ -132,7 +132,7 @@ func (c *Client) UserByUsername(username string) (*User, error) {
 
 	var user User
 	if err := json.NewDecoder(body).Decode(&user); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return &user, nil
@@ -152,7 +152,7 @@ func (c *Client) CreateUser(username, password string, isAdmin bool) (*User, err
 
 	var user *User
 	if err := json.NewDecoder(body).Decode(&user); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return user, nil
@@ -168,7 +168,7 @@ func (c *Client) UpdateUser(userID int64, userChanges *UserModificationRequest) 
 
 	var u *User
 	if err := json.NewDecoder(body).Decode(&u); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return u, nil
@@ -198,7 +198,7 @@ func (c *Client) IntegrationsStatus() (bool, error) {
 	}
 
 	if err := json.NewDecoder(body).Decode(&response); err != nil {
-		return false, fmt.Errorf("miniflux: response error (%v)", err)
+		return false, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return response.HasIntegrations, nil
@@ -214,7 +214,7 @@ func (c *Client) Discover(url string) (Subscriptions, error) {
 
 	var subscriptions Subscriptions
 	if err := json.NewDecoder(body).Decode(&subscriptions); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return subscriptions, nil
@@ -230,7 +230,7 @@ func (c *Client) Categories() (Categories, error) {
 
 	var categories Categories
 	if err := json.NewDecoder(body).Decode(&categories); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return categories, nil
@@ -248,7 +248,7 @@ func (c *Client) CreateCategory(title string) (*Category, error) {
 
 	var category *Category
 	if err := json.NewDecoder(body).Decode(&category); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return category, nil
@@ -266,7 +266,7 @@ func (c *Client) UpdateCategory(categoryID int64, title string) (*Category, erro
 
 	var category *Category
 	if err := json.NewDecoder(body).Decode(&category); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return category, nil
@@ -288,7 +288,7 @@ func (c *Client) CategoryFeeds(categoryID int64) (Feeds, error) {
 
 	var feeds Feeds
 	if err := json.NewDecoder(body).Decode(&feeds); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return feeds, nil
@@ -315,7 +315,7 @@ func (c *Client) Feeds() (Feeds, error) {
 
 	var feeds Feeds
 	if err := json.NewDecoder(body).Decode(&feeds); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return feeds, nil
@@ -353,7 +353,7 @@ func (c *Client) Feed(feedID int64) (*Feed, error) {
 
 	var feed *Feed
 	if err := json.NewDecoder(body).Decode(&feed); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return feed, nil
@@ -373,7 +373,7 @@ func (c *Client) CreateFeed(feedCreationRequest *FeedCreationRequest) (int64, er
 
 	var r result
 	if err := json.NewDecoder(body).Decode(&r); err != nil {
-		return 0, fmt.Errorf("miniflux: response error (%v)", err)
+		return 0, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return r.FeedID, nil
@@ -389,7 +389,7 @@ func (c *Client) UpdateFeed(feedID int64, feedChanges *FeedModificationRequest) 
 
 	var f *Feed
 	if err := json.NewDecoder(body).Decode(&f); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return f, nil
@@ -428,7 +428,7 @@ func (c *Client) FeedIcon(feedID int64) (*FeedIcon, error) {
 
 	var feedIcon *FeedIcon
 	if err := json.NewDecoder(body).Decode(&feedIcon); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return feedIcon, nil
@@ -444,7 +444,7 @@ func (c *Client) FeedEntry(feedID, entryID int64) (*Entry, error) {
 
 	var entry *Entry
 	if err := json.NewDecoder(body).Decode(&entry); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return entry, nil
@@ -460,7 +460,7 @@ func (c *Client) CategoryEntry(categoryID, entryID int64) (*Entry, error) {
 
 	var entry *Entry
 	if err := json.NewDecoder(body).Decode(&entry); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return entry, nil
@@ -476,7 +476,7 @@ func (c *Client) Entry(entryID int64) (*Entry, error) {
 
 	var entry *Entry
 	if err := json.NewDecoder(body).Decode(&entry); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return entry, nil
@@ -494,7 +494,7 @@ func (c *Client) Entries(filter *Filter) (*EntryResultSet, error) {
 
 	var result EntryResultSet
 	if err := json.NewDecoder(body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return &result, nil
@@ -512,7 +512,7 @@ func (c *Client) FeedEntries(feedID int64, filter *Filter) (*EntryResultSet, err
 
 	var result EntryResultSet
 	if err := json.NewDecoder(body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return &result, nil
@@ -530,7 +530,7 @@ func (c *Client) CategoryEntries(categoryID int64, filter *Filter) (*EntryResult
 
 	var result EntryResultSet
 	if err := json.NewDecoder(body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return &result, nil
@@ -557,7 +557,7 @@ func (c *Client) UpdateEntry(entryID int64, entryChanges *EntryModificationReque
 
 	var entry *Entry
 	if err := json.NewDecoder(body).Decode(&entry); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return entry, nil
@@ -588,7 +588,7 @@ func (c *Client) FetchEntryOriginalContent(entryID int64) (string, error) {
 	}
 
 	if err := json.NewDecoder(body).Decode(&response); err != nil {
-		return "", fmt.Errorf("miniflux: response error (%v)", err)
+		return "", fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return response.Content, nil
@@ -604,7 +604,7 @@ func (c *Client) FetchCounters() (*FeedCounters, error) {
 
 	var result FeedCounters
 	if err := json.NewDecoder(body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return &result, nil
@@ -626,7 +626,7 @@ func (c *Client) Icon(iconID int64) (*FeedIcon, error) {
 
 	var feedIcon *FeedIcon
 	if err := json.NewDecoder(body).Decode(&feedIcon); err != nil {
-		return nil, fmt.Errorf("miniflux: response error (%v)", err)
+		return nil, fmt.Errorf("noflux: response error (%v)", err)
 	}
 
 	return feedIcon, nil
@@ -642,7 +642,7 @@ func (c *Client) Enclosure(enclosureID int64) (*Enclosure, error) {
 
 	var enclosure *Enclosure
 	if err := json.NewDecoder(body).Decode(&enclosure); err != nil {
-		return nil, fmt.Errorf("miniflux: response error(%v)", err)
+		return nil, fmt.Errorf("noflux: response error(%v)", err)
 	}
 
 	return enclosure, nil

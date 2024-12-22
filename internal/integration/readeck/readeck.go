@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package readeck // import "miniflux.app/v2/internal/integration/readeck"
+package readeck // import "github.com/fiatjaf/noflux/internal/integration/readeck"
 
 import (
 	"bytes"
@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/urllib"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -116,7 +116,7 @@ func (c *Client) CreateBookmark(entryURL, entryTitle string, entryContent string
 		request.Header.Set("Content-Type", multipartWriter.FormDataContentType())
 	}
 
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 	request.Header.Set("Authorization", "Bearer "+c.apiKey)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}

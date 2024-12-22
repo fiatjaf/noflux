@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package httpd // import "miniflux.app/v2/internal/http/server"
+package httpd // import "github.com/fiatjaf/noflux/internal/http/server"
 
 import (
 	"context"
@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/request"
 )
 
 func middleware(next http.Handler) http.Handler {

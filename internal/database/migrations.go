@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package database // import "miniflux.app/v2/internal/database"
+package database // import "github.com/fiatjaf/noflux/internal/database"
 
 import (
 	"database/sql"
@@ -155,7 +155,7 @@ var migrations = []func(tx *sql.Tx) error{
 				user_id int not null,
 				pinboard_enabled bool default 'f',
 				pinboard_token text default '',
-				pinboard_tags text default 'miniflux',
+				pinboard_tags text default 'noflux',
 				pinboard_mark_as_unread bool default 'f',
 				instapaper_enabled bool default 'f',
 				instapaper_username text default '',
@@ -576,7 +576,7 @@ var migrations = []func(tx *sql.Tx) error{
 			ALTER TABLE integrations ADD COLUMN espial_enabled bool default 'f';
 			ALTER TABLE integrations ADD COLUMN espial_url text default '';
 			ALTER TABLE integrations ADD COLUMN espial_api_key text default '';
-			ALTER TABLE integrations ADD COLUMN espial_tags text default 'miniflux';
+			ALTER TABLE integrations ADD COLUMN espial_tags text default 'noflux';
 			`
 		_, err = tx.Exec(sql)
 		return err

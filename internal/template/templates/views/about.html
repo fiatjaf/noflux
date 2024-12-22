@@ -9,11 +9,11 @@
 
 {{ define "content"}}
 <div class="panel">
-    <h3>Miniflux</h3>
+    <h3>Noflux</h3>
     <ul>
-        <li><strong>{{ t "page.about.version" }}</strong> <a href="https://github.com/miniflux/v2/releases/tag/{{ .version }}">{{ .version }}</a></li>
+        <li><strong>{{ t "page.about.version" }}</strong> <a href="https://github.com/fiatjaf/noflux/releases/tag/{{ .version }}">{{ .version }}</a></li>
 	{{ if .commit }}
-        <li><strong>Git Commit</strong> <a href="https://github.com/miniflux/v2/commit/{{ .commit }}">{{ .commit }}</a></li>
+        <li><strong>Git Commit</strong> <a href="https://github.com/fiatjaf/noflux/commit/{{ .commit }}">{{ .commit }}</a></li>
 	{{ end }}
         <li><strong>{{ t "page.about.build_date" }}</strong> {{ .build_date }}</li>
         {{ if .user.IsAdmin }}<li><strong>{{ t "page.about.postgres_version" }}</strong> {{ .postgres_version }}</li>{{ end }}
@@ -24,7 +24,7 @@
 <div class="panel">
     <h3>{{ t "page.about.credits" }}</h3>
     <ul>
-        <li><strong>{{ t "page.about.author" }}</strong> Frédéric Guillot</li>
+        <li><strong>{{ t "page.about.author" }}</strong> fiatjaf</li>
         <li><strong>{{ t "page.about.license" }}</strong> Apache 2.0</li>
     </ul>
 </div>

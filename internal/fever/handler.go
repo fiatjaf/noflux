@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package fever // import "miniflux.app/v2/internal/fever"
+package fever // import "github.com/fiatjaf/noflux/internal/fever"
 
 import (
 	"log/slog"
@@ -10,12 +10,12 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/json"
-	"miniflux.app/v2/internal/integration"
-	"miniflux.app/v2/internal/mediaproxy"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/json"
+	"github.com/fiatjaf/noflux/internal/integration"
+	"github.com/fiatjaf/noflux/internal/mediaproxy"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/storage"
 
 	"github.com/gorilla/mux"
 )

@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package cli // import "miniflux.app/v2/internal/cli"
+package cli // import "github.com/fiatjaf/noflux/internal/cli"
 
 import (
 	"context"
@@ -12,12 +12,12 @@ import (
 	"syscall"
 	"time"
 
-	"miniflux.app/v2/internal/config"
-	httpd "miniflux.app/v2/internal/http/server"
-	"miniflux.app/v2/internal/metric"
-	"miniflux.app/v2/internal/storage"
-	"miniflux.app/v2/internal/systemd"
-	"miniflux.app/v2/internal/worker"
+	"github.com/fiatjaf/noflux/internal/config"
+	httpd "github.com/fiatjaf/noflux/internal/http/server"
+	"github.com/fiatjaf/noflux/internal/metric"
+	"github.com/fiatjaf/noflux/internal/storage"
+	"github.com/fiatjaf/noflux/internal/systemd"
+	"github.com/fiatjaf/noflux/internal/worker"
 )
 
 func startDaemon(store *storage.Storage) {

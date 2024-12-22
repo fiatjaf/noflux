@@ -1,18 +1,18 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 /*
-Package client implements a client library for the Miniflux REST API.
+Package client implements a client library for the Noflux REST API.
 
 # Examples
 
 This code snippet fetch the list of users:
 
 	import (
-		miniflux "miniflux.app/v2/client"
+		noflux "github.com/fiatjaf/noflux/client"
 	)
 
-	client := miniflux.NewClient("https://api.example.org", "admin", "secret")
+	client := noflux.NewClient("https://api.example.org", "admin", "secret")
 	users, err := client.Users()
 	if err != nil {
 		fmt.Println(err)
@@ -29,4 +29,4 @@ This one discover subscriptions on a website:
 	}
 	fmt.Println(subscriptions)
 */
-package client // import "miniflux.app/v2/client"
+package client // import "github.com/fiatjaf/noflux/client"

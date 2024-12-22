@@ -1,12 +1,12 @@
-Source: miniflux
-Maintainer: Frederic Guillot <f@miniflux.net>
+Source: noflux
+Maintainer: fiatjaf <fiatjaf@gmail.com>
 Build-Depends: debhelper (>= 9.20160709) | dh-systemd
 
-Package: miniflux
+Package: noflux
 Architecture: __PKG_ARCH__
 Section: web
 Priority: optional
 Description: Minimalist Feed Reader
- Miniflux is a minimalist and opinionated feed reader
-Homepage: https://miniflux.app
+ Noflux is a minimalist and opinionated feed reader
+Homepage: https://noflux.nostr.technology
 Depends: ${misc:Depends}, ${shlibs:Depends}, adduser

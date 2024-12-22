@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package mediaproxy // import "miniflux.app/v2/internal/mediaproxy"
+package mediaproxy // import "github.com/fiatjaf/noflux/internal/mediaproxy"
 
 import (
 	"net/http"
@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/gorilla/mux"
-	"miniflux.app/v2/internal/config"
+	"github.com/fiatjaf/noflux/internal/config"
 )
 
 func TestProxyFilterWithHttpDefault(t *testing.T) {

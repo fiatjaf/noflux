@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package rss // import "miniflux.app/v2/internal/reader/rss"
+package rss // import "github.com/fiatjaf/noflux/internal/reader/rss"
 
 import (
 	"html"
@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/date"
-	"miniflux.app/v2/internal/reader/sanitizer"
-	"miniflux.app/v2/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/date"
+	"github.com/fiatjaf/noflux/internal/reader/sanitizer"
+	"github.com/fiatjaf/noflux/internal/urllib"
 )
 
 type RSSAdapter struct {

@@ -1,19 +1,19 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package api // import "miniflux.app/v2/internal/api"
+package api // import "github.com/fiatjaf/noflux/internal/api"
 
 import (
 	json_parser "encoding/json"
 	"net/http"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/json"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/fetcher"
-	"miniflux.app/v2/internal/reader/subscription"
-	"miniflux.app/v2/internal/validator"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/json"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
+	"github.com/fiatjaf/noflux/internal/reader/subscription"
+	"github.com/fiatjaf/noflux/internal/validator"
 )
 
 func (h *handler) discoverSubscriptions(w http.ResponseWriter, r *http.Request) {

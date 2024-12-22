@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package ntfy // import "miniflux.app/v2/internal/integration/ntfy"
+package ntfy // import "github.com/fiatjaf/noflux/internal/integration/ntfy"
 
 import (
 	"bytes"
@@ -11,8 +11,8 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const (
@@ -74,7 +74,7 @@ func (c *Client) makeRequest(payload any) error {
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	// See https://docs.ntfy.sh/publish/#access-tokens
 	if c.ntfyApiToken != "" {

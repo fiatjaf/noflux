@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package rewrite // import "miniflux.app/v2/internal/reader/rewrite"
+package rewrite // import "github.com/fiatjaf/noflux/internal/reader/rewrite"
 
 import (
 	"os"
@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/model"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/model"
 )
 
 func TestParseRules(t *testing.T) {

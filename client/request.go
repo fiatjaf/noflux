@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package client // import "miniflux.app/v2/client"
+package client // import "github.com/fiatjaf/noflux/client"
 
 import (
 	"bytes"
@@ -16,18 +16,18 @@ import (
 )
 
 const (
-	userAgent      = "Miniflux Client Library"
+	userAgent      = "Noflux Client Library"
 	defaultTimeout = 80
 )
 
 // List of exposed errors.
 var (
-	ErrNotAuthorized = errors.New("miniflux: unauthorized (bad credentials)")
-	ErrForbidden     = errors.New("miniflux: access forbidden")
-	ErrServerError   = errors.New("miniflux: internal server error")
-	ErrNotFound      = errors.New("miniflux: resource not found")
-	ErrBadRequest    = errors.New("miniflux: bad request")
-	ErrEmptyEndpoint = errors.New("miniflux: empty endpoint provided")
+	ErrNotAuthorized = errors.New("noflux: unauthorized (bad credentials)")
+	ErrForbidden     = errors.New("noflux: access forbidden")
+	ErrServerError   = errors.New("noflux: internal server error")
+	ErrNotFound      = errors.New("noflux: resource not found")
+	ErrBadRequest    = errors.New("noflux: bad request")
+	ErrEmptyEndpoint = errors.New("noflux: empty endpoint provided")
 )
 
 type errorResponse struct {
@@ -116,7 +116,7 @@ func (r *request) execute(method, path string, data interface{}) (io.ReadCloser,
 		if err := decoder.Decode(&resp); err != nil {
 			return nil, ErrServerError
 		}
-		return nil, errors.New("miniflux: internal server error: " + resp.ErrorMessage)
+		return nil, errors.New("noflux: internal server error: " + resp.ErrorMessage)
 	case http.StatusNotFound:
 		response.Body.Close()
 		return nil, ErrNotFound
@@ -137,7 +137,7 @@ func (r *request) execute(method, path string, data interface{}) (io.ReadCloser,
 
 	if response.StatusCode > 400 {
 		response.Body.Close()
-		return nil, fmt.Errorf("miniflux: status code=%d", response.StatusCode)
+		return nil, fmt.Errorf("noflux: status code=%d", response.StatusCode)
 	}
 
 	return response.Body, nil

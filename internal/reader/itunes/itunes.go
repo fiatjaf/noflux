@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package itunes // import "miniflux.app/v2/internal/reader/itunes"
+package itunes // import "github.com/fiatjaf/noflux/internal/reader/itunes"
 
 import "strings"
 

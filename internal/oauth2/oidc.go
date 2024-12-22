@@ -1,14 +1,14 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package oauth2 // import "miniflux.app/v2/internal/oauth2"
+package oauth2 // import "github.com/fiatjaf/noflux/internal/oauth2"
 
 import (
 	"context"
 	"errors"
 	"fmt"
 
-	"miniflux.app/v2/internal/model"
+	"github.com/fiatjaf/noflux/internal/model"
 
 	"github.com/coreos/go-oidc/v3/oidc"
 	"golang.org/x/oauth2"

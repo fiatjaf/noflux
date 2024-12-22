@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package config // import "miniflux.app/v2/internal/config"
+package config // import "github.com/fiatjaf/noflux/internal/config"
 
 import (
 	"bytes"
@@ -1938,7 +1938,7 @@ DEBUG = yes
 Invalid text
 `)
 
-	tmpfile, err := os.CreateTemp(".", "miniflux.*.unit_test.conf")
+	tmpfile, err := os.CreateTemp(".", "noflux.*.unit_test.conf")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -2159,7 +2159,7 @@ func TestParseConfigDumpOutput(t *testing.T) {
 	wantOpts.adminUsername = "my-username"
 
 	serialized := wantOpts.String()
-	tmpfile, err := os.CreateTemp(".", "miniflux.*.unit_test.conf")
+	tmpfile, err := os.CreateTemp(".", "noflux.*.unit_test.conf")
 	if err != nil {
 		t.Fatal(err)
 	}

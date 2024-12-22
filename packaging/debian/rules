@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DESTDIR=debian/miniflux
+DESTDIR=debian/noflux
 
 %:
 	dh $@ --with=systemd
@@ -9,8 +9,8 @@ override_dh_auto_clean:
 override_dh_auto_test:
 override_dh_auto_build:
 override_dh_auto_install:
-	cp miniflux.conf $(DESTDIR)/etc/miniflux.conf
-	cp miniflux $(DESTDIR)/usr/bin/miniflux
+	cp noflux.conf $(DESTDIR)/etc/noflux.conf
+	cp noflux $(DESTDIR)/usr/bin/noflux
 
 override_dh_installinit:
 	dh_installinit --noscripts

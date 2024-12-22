@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/urllib"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -39,7 +39,7 @@ func (c *Client) CreateBookmark(entryURL, entryTitle string, tags []string) erro
 	}
 
 	request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 	request.AddCookie(&http.Cookie{Name: "betula-token", Value: c.token})
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}

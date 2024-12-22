@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package googlereader // import "miniflux.app/v2/internal/googlereader"
+package googlereader // import "github.com/fiatjaf/noflux/internal/googlereader"
 
 import (
 	"errors"
@@ -12,19 +12,19 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response"
-	"miniflux.app/v2/internal/http/response/json"
-	"miniflux.app/v2/internal/http/route"
-	"miniflux.app/v2/internal/integration"
-	"miniflux.app/v2/internal/mediaproxy"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/fetcher"
-	mff "miniflux.app/v2/internal/reader/handler"
-	mfs "miniflux.app/v2/internal/reader/subscription"
-	"miniflux.app/v2/internal/storage"
-	"miniflux.app/v2/internal/validator"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response"
+	"github.com/fiatjaf/noflux/internal/http/response/json"
+	"github.com/fiatjaf/noflux/internal/http/route"
+	"github.com/fiatjaf/noflux/internal/integration"
+	"github.com/fiatjaf/noflux/internal/mediaproxy"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
+	mff "github.com/fiatjaf/noflux/internal/reader/handler"
+	mfs "github.com/fiatjaf/noflux/internal/reader/subscription"
+	"github.com/fiatjaf/noflux/internal/storage"
+	"github.com/fiatjaf/noflux/internal/validator"
 
 	"github.com/gorilla/mux"
 )

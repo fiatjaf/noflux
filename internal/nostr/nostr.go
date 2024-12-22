@@ -11,10 +11,10 @@ import (
 	"github.com/nbd-wtf/go-nostr/nip05"
 	"github.com/nbd-wtf/go-nostr/nip19"
 	"github.com/nbd-wtf/go-nostr/sdk"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/processor"
-	"miniflux.app/v2/internal/reader/rewrite"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/processor"
+	"github.com/fiatjaf/noflux/internal/reader/rewrite"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 var NostrSdk *sdk.System

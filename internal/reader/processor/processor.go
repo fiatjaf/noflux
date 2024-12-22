@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 package processor
@@ -13,16 +13,16 @@ import (
 	"github.com/tdewolff/minify/v2"
 	"github.com/tdewolff/minify/v2/html"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/metric"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/fetcher"
-	"miniflux.app/v2/internal/reader/readingtime"
-	"miniflux.app/v2/internal/reader/rewrite"
-	"miniflux.app/v2/internal/reader/sanitizer"
-	"miniflux.app/v2/internal/reader/scraper"
-	"miniflux.app/v2/internal/reader/urlcleaner"
-	"miniflux.app/v2/internal/storage"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/metric"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
+	"github.com/fiatjaf/noflux/internal/reader/readingtime"
+	"github.com/fiatjaf/noflux/internal/reader/rewrite"
+	"github.com/fiatjaf/noflux/internal/reader/sanitizer"
+	"github.com/fiatjaf/noflux/internal/reader/scraper"
+	"github.com/fiatjaf/noflux/internal/reader/urlcleaner"
+	"github.com/fiatjaf/noflux/internal/storage"
 )
 
 var customReplaceRuleRegex = regexp.MustCompile(`rewrite\("([^"]+)"\|"([^"]+)"\)`)

@@ -1,14 +1,14 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package processor // import "miniflux.app/v2/internal/reader/processor"
+package processor // import "github.com/fiatjaf/noflux/internal/reader/processor"
 
 import (
 	"testing"
 	"time"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/model"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/model"
 )
 
 func TestBlockingEntries(t *testing.T) {

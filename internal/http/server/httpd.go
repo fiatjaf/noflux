@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package httpd // import "miniflux.app/v2/internal/http/server"
+package httpd // import "github.com/fiatjaf/noflux/internal/http/server"
 
 import (
 	"crypto/tls"
@@ -14,15 +14,15 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/api"
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/fever"
-	"miniflux.app/v2/internal/googlereader"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/storage"
-	"miniflux.app/v2/internal/ui"
-	"miniflux.app/v2/internal/version"
-	"miniflux.app/v2/internal/worker"
+	"github.com/fiatjaf/noflux/internal/api"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/fever"
+	"github.com/fiatjaf/noflux/internal/googlereader"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/storage"
+	"github.com/fiatjaf/noflux/internal/ui"
+	"github.com/fiatjaf/noflux/internal/version"
+	"github.com/fiatjaf/noflux/internal/worker"
 
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"

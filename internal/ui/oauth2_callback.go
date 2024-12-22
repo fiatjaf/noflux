@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package ui // import "miniflux.app/v2/internal/ui"
+package ui // import "github.com/fiatjaf/noflux/internal/ui"
 
 import (
 	"crypto/subtle"
@@ -9,14 +9,14 @@ import (
 	"log/slog"
 	"net/http"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/cookie"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/html"
-	"miniflux.app/v2/internal/http/route"
-	"miniflux.app/v2/internal/locale"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/ui/session"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/cookie"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/html"
+	"github.com/fiatjaf/noflux/internal/http/route"
+	"github.com/fiatjaf/noflux/internal/locale"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/ui/session"
 )
 
 func (h *handler) oauth2Callback(w http.ResponseWriter, r *http.Request) {

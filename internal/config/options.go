@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package config // import "miniflux.app/v2/internal/config"
+package config // import "github.com/fiatjaf/noflux/internal/config"
 
 import (
 	"fmt"
@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const (
@@ -38,7 +38,7 @@ const (
 	defaultSchedulerRoundRobinMinInterval     = 60
 	defaultPollingParsingErrorLimit           = 3
 	defaultRunMigrations                      = false
-	defaultDatabaseURL                        = "user=postgres password=postgres dbname=miniflux2 sslmode=disable"
+	defaultDatabaseURL                        = "user=postgres password=postgres dbname=noflux sslmode=disable"
 	defaultDatabaseMaxConns                   = 20
 	defaultDatabaseMinConns                   = 1
 	defaultDatabaseConnectionLifetime         = 5
@@ -81,7 +81,7 @@ const (
 	defaultAuthProxyHeader                    = ""
 	defaultAuthProxyUserCreation              = false
 	defaultMaintenanceMode                    = false
-	defaultMaintenanceMessage                 = "Miniflux is currently under maintenance"
+	defaultMaintenanceMessage                 = "Noflux is currently under maintenance"
 	defaultMetricsCollector                   = false
 	defaultMetricsRefreshInterval             = 60
 	defaultMetricsAllowedNetworks             = "127.0.0.1/8"
@@ -92,7 +92,7 @@ const (
 	defaultWebAuthn                           = false
 )
 
-var defaultHTTPClientUserAgent = "Mozilla/5.0 (compatible; Miniflux/" + version.Version + "; +https://miniflux.app)"
+var defaultHTTPClientUserAgent = "Mozilla/5.0 (compatible; Noflux/" + version.Version + "; +https://noflux.nostr.technology)"
 
 // Option contains a key to value map of a single option. It may be used to output debug strings.
 type Option struct {
@@ -637,7 +637,7 @@ func (o *Options) MetricsPassword() string {
 	return o.metricsPassword
 }
 
-// HTTPClientUserAgent returns the global User-Agent header for miniflux.
+// HTTPClientUserAgent returns the global User-Agent header for noflux.
 func (o *Options) HTTPClientUserAgent() string {
 	return o.httpClientUserAgent
 }
@@ -647,7 +647,7 @@ func (o *Options) HasWatchdog() bool {
 	return o.watchdog
 }
 
-// InvidiousInstance returns the invidious instance used by miniflux
+// InvidiousInstance returns the invidious instance used by noflux
 func (o *Options) InvidiousInstance() string {
 	return o.invidiousInstance
 }

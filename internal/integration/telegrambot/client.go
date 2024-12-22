@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package telegrambot // import "miniflux.app/v2/internal/integration/telegrambot"
+package telegrambot // import "github.com/fiatjaf/noflux/internal/integration/telegrambot"
 
 import (
 	"bytes"
@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"time"
 
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const (
@@ -48,7 +48,7 @@ func (c *Client) GetMe() (*User, error) {
 	}
 
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)
@@ -88,7 +88,7 @@ func (c *Client) SendMessage(message *MessageRequest) (*Message, error) {
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)

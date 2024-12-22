@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package sanitizer // import "miniflux.app/v2/internal/reader/sanitizer"
+package sanitizer // import "github.com/fiatjaf/noflux/internal/reader/sanitizer"
 
 import (
 	"io"
@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/reader/urlcleaner"
-	"miniflux.app/v2/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/reader/urlcleaner"
+	"github.com/fiatjaf/noflux/internal/urllib"
 
 	"golang.org/x/net/html"
 )

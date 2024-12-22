@@ -1,4 +1,0 @@
----
-- hosts: miniflux
-  roles:
-    - { role: mgrote.miniflux, tags: "miniflux" }

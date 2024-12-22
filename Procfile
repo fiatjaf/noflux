@@ -1,1 +1,1 @@
-web: miniflux.app
+web: noflux.app

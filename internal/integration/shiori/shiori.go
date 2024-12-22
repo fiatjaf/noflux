@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package shiori // import "miniflux.app/v2/internal/integration/shiori"
+package shiori // import "github.com/fiatjaf/noflux/internal/integration/shiori"
 
 import (
 	"bytes"
@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/urllib"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -61,7 +61,7 @@ func (c *Client) CreateBookmark(entryURL, entryTitle string) error {
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 	request.Header.Set("Authorization", "Bearer "+token)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
@@ -97,7 +97,7 @@ func (c *Client) authenticate() (token string, err error) {
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 

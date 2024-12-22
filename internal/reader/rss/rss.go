@@ -1,17 +1,17 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package rss // import "miniflux.app/v2/internal/reader/rss"
+package rss // import "github.com/fiatjaf/noflux/internal/reader/rss"
 
 import (
 	"encoding/xml"
 	"strconv"
 	"strings"
 
-	"miniflux.app/v2/internal/reader/dublincore"
-	"miniflux.app/v2/internal/reader/googleplay"
-	"miniflux.app/v2/internal/reader/itunes"
-	"miniflux.app/v2/internal/reader/media"
+	"github.com/fiatjaf/noflux/internal/reader/dublincore"
+	"github.com/fiatjaf/noflux/internal/reader/googleplay"
+	"github.com/fiatjaf/noflux/internal/reader/itunes"
+	"github.com/fiatjaf/noflux/internal/reader/media"
 )
 
 // Specs: https://www.rssboard.org/rss-specification

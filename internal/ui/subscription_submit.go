@@ -1,23 +1,23 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package ui // import "miniflux.app/v2/internal/ui"
+package ui // import "github.com/fiatjaf/noflux/internal/ui"
 
 import (
 	"net/http"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/http/request"
-	"miniflux.app/v2/internal/http/response/html"
-	"miniflux.app/v2/internal/http/route"
-	"miniflux.app/v2/internal/locale"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/fetcher"
-	feedHandler "miniflux.app/v2/internal/reader/handler"
-	"miniflux.app/v2/internal/reader/subscription"
-	"miniflux.app/v2/internal/ui/form"
-	"miniflux.app/v2/internal/ui/session"
-	"miniflux.app/v2/internal/ui/view"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/http/request"
+	"github.com/fiatjaf/noflux/internal/http/response/html"
+	"github.com/fiatjaf/noflux/internal/http/route"
+	"github.com/fiatjaf/noflux/internal/locale"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
+	feedHandler "github.com/fiatjaf/noflux/internal/reader/handler"
+	"github.com/fiatjaf/noflux/internal/reader/subscription"
+	"github.com/fiatjaf/noflux/internal/ui/form"
+	"github.com/fiatjaf/noflux/internal/ui/session"
+	"github.com/fiatjaf/noflux/internal/ui/view"
 )
 
 func (h *handler) submitSubscription(w http.ResponseWriter, r *http.Request) {

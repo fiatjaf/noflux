@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package scraper // import "miniflux.app/v2/internal/reader/scraper"
+package scraper // import "github.com/fiatjaf/noflux/internal/reader/scraper"
 
 // List of predefined scraper rules (alphabetically sorted)
 // domain => CSS selectors

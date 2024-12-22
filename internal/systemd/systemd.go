@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package systemd // import "miniflux.app/v2/internal/systemd"
+package systemd // import "github.com/fiatjaf/noflux/internal/systemd"
 
 import (
 	"fmt"

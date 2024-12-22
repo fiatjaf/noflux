@@ -1,19 +1,19 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package cookie // import "miniflux.app/v2/internal/http/cookie"
+package cookie // import "github.com/fiatjaf/noflux/internal/http/cookie"
 
 import (
 	"net/http"
 	"time"
 
-	"miniflux.app/v2/internal/config"
+	"github.com/fiatjaf/noflux/internal/config"
 )
 
 // Cookie names.
 const (
-	CookieAppSessionID  = "MinifluxAppSessionID"
-	CookieUserSessionID = "MinifluxUserSessionID"
+	CookieAppSessionID  = "NofluxAppSessionID"
+	CookieUserSessionID = "NofluxUserSessionID"
 )
 
 // New creates a new cookie.

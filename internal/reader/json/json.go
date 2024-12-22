@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package json // import "miniflux.app/v2/internal/reader/json"
+package json // import "github.com/fiatjaf/noflux/internal/reader/json"
 
 // JSON Feed specs:
 // https://www.jsonfeed.org/version/1.1/

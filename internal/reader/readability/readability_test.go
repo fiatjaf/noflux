@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package readability // import "miniflux.app/v2/internal/reader/readability"
+package readability // import "github.com/fiatjaf/noflux/internal/reader/readability"
 
 import (
 	"bytes"
@@ -166,8 +166,8 @@ func TestRemoveBlacklist(t *testing.T) {
 
 func BenchmarkExtractContent(b *testing.B) {
 	var testCases = map[string][]byte{
-		"miniflux_github.html":    {},
-		"miniflux_wikipedia.html": {},
+		"noflux_github.html":    {},
+		"noflux_wikipedia.html": {},
 	}
 	for filename := range testCases {
 		data, err := os.ReadFile("testdata/" + filename)

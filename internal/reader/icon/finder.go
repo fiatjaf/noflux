@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package icon // import "miniflux.app/v2/internal/reader/icon"
+package icon // import "github.com/fiatjaf/noflux/internal/reader/icon"
 
 import (
 	"bytes"
@@ -18,11 +18,11 @@ import (
 	"slices"
 	"strings"
 
-	"miniflux.app/v2/internal/config"
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/model"
-	"miniflux.app/v2/internal/reader/fetcher"
-	"miniflux.app/v2/internal/urllib"
+	"github.com/fiatjaf/noflux/internal/config"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/fetcher"
+	"github.com/fiatjaf/noflux/internal/urllib"
 
 	"github.com/PuerkitoBio/goquery"
 	"golang.org/x/image/draw"

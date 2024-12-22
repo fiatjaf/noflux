@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: Copyright The Miniflux Authors. All rights reserved.
+// SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package matrixbot // import "miniflux.app/v2/internal/integration/matrixbot"
+package matrixbot // import "github.com/fiatjaf/noflux/internal/integration/matrixbot"
 
 import (
 	"bytes"
@@ -11,8 +11,8 @@ import (
 	"net/url"
 	"time"
 
-	"miniflux.app/v2/internal/crypto"
-	"miniflux.app/v2/internal/version"
+	"github.com/fiatjaf/noflux/internal/crypto"
+	"github.com/fiatjaf/noflux/internal/version"
 )
 
 const defaultClientTimeout = 10 * time.Second
@@ -38,7 +38,7 @@ func (c *Client) DiscoverEndpoints() (*DiscoveryEndpointResponse, error) {
 	}
 
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)
@@ -87,7 +87,7 @@ func (c *Client) Login(homeServerURL, matrixUsername, matrixPassword string) (*L
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
 	response, err := httpClient.Do(request)
@@ -135,7 +135,7 @@ func (c *Client) SendFormattedTextMessage(homeServerURL, accessToken, roomID, te
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", "Miniflux/"+version.Version)
+	request.Header.Set("User-Agent", "Noflux/"+version.Version)
 	request.Header.Set("Authorization", "Bearer "+accessToken)
 
 	httpClient := &http.Client{Timeout: defaultClientTimeout}
