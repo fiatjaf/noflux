@@ -19,7 +19,7 @@
         {{ end }}
 
         <label for="form-url">{{ t "page.add_feed.label.url" }}</label>
-        <input type="url" name="url" id="form-url" placeholder="https://domain.tld/" value="{{ .form.URL }}" spellcheck="false" required autofocus>
+        <input type="text" name="url" id="form-url" placeholder="https://domain.tld/ or nostr:npub1..." value="{{ .form.URL }}" spellcheck="false" required autofocus>
 
         <label for="form-category">{{ t "form.feed.label.category" }}</label>
         <select id="form-category" name="category_id">

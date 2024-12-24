@@ -6,6 +6,7 @@ package form // import "github.com/fiatjaf/noflux/internal/ui/form"
 import (
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/fiatjaf/noflux/internal/locale"
 	"github.com/fiatjaf/noflux/internal/validator"
@@ -36,6 +37,13 @@ func (s *SubscriptionForm) Validate() *locale.LocalizedError {
 		return locale.NewLocalizedError("error.feed_mandatory_fields")
 	}
 
+	// normalize URL before validating
+	s.URL = strings.TrimSpace(s.URL)
+	if strings.HasPrefix(s.URL, "npub1") || strings.HasPrefix(s.URL, "nprofile1") || strings.Contains(s.URL, "@") {
+		s.URL = "nostr:" + s.URL
+	} else if !strings.HasPrefix(s.URL, "nostr:") && !strings.HasPrefix(s.URL, "http") {
+		s.URL = "https://" + s.URL
+	}
 	if !validator.IsValidURL(s.URL) {
 		return locale.NewLocalizedError("error.invalid_feed_url")
 	}

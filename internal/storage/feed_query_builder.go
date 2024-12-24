@@ -129,7 +129,7 @@ func (f *FeedQueryBuilder) GetFeed() (*model.Feed, error) {
 
 // GetFeeds returns a list of feeds that match the condition.
 func (f *FeedQueryBuilder) GetFeeds() (model.Feeds, error) {
-	var query = `
+	query := `
 		SELECT
 			f.id,
 			f.feed_url,
@@ -239,7 +239,6 @@ func (f *FeedQueryBuilder) GetFeeds() (model.Feeds, error) {
 			&feed.NtfyEnabled,
 			&feed.NtfyPriority,
 		)
-
 		if err != nil {
 			return nil, fmt.Errorf(`store: unable to fetch feeds row: %w`, err)
 		}

@@ -13,6 +13,7 @@ import (
 
 	"github.com/fiatjaf/noflux/internal/config"
 	"github.com/fiatjaf/noflux/internal/database"
+	"github.com/fiatjaf/noflux/internal/nostr"
 	"github.com/fiatjaf/noflux/internal/storage"
 	"github.com/fiatjaf/noflux/internal/ui/static"
 	"github.com/fiatjaf/noflux/internal/version"
@@ -178,6 +179,10 @@ func Parse() {
 	store := storage.NewStorage(db)
 
 	if err := store.Ping(); err != nil {
+		printErrorAndExit(err)
+	}
+
+	if err := nostr.Initialize(db); err != nil {
 		printErrorAndExit(err)
 	}
 

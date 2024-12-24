@@ -12,14 +12,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/fiatjaf/noflux/internal/config"
-
-	nethtml "golang.org/x/net/html"
-
 	"github.com/PuerkitoBio/goquery"
-	nostrGoldmarkExtension "github.com/github-tijlxyz/goldmark-nostr"
-	"github.com/yuin/goldmark"
-	goldmarkhtml "github.com/yuin/goldmark/renderer/html"
+	"github.com/fiatjaf/noflux/internal/config"
+	nethtml "golang.org/x/net/html"
 )
 
 var (
@@ -406,24 +401,6 @@ func addHackerNewsLinksUsing(entryContent, app string) string {
 	}
 
 	return entryContent
-}
-
-func parseMarkdown(entryContent string) string {
-	var sb strings.Builder
-	md := goldmark.New(
-		goldmark.WithExtensions(
-			nostrGoldmarkExtension.New(nostrGoldmarkExtension.WithStrict(), nostrGoldmarkExtension.WithNostrLink("https://njump.me/%s")),
-		),
-		goldmark.WithRendererOptions(
-			goldmarkhtml.WithUnsafe(),
-		),
-	)
-
-	if err := md.Convert([]byte(entryContent), &sb); err != nil {
-		return entryContent
-	}
-
-	return sb.String()
 }
 
 func removeTables(entryContent string) string {

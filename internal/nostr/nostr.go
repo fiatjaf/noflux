@@ -2,25 +2,36 @@ package nostr
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/fiatjaf/noflux/internal/model"
+	"github.com/fiatjaf/noflux/internal/reader/processor"
+	"github.com/fiatjaf/noflux/internal/storage"
 	"github.com/nbd-wtf/go-nostr"
 	"github.com/nbd-wtf/go-nostr/nip05"
 	"github.com/nbd-wtf/go-nostr/nip19"
+	"github.com/nbd-wtf/go-nostr/nip23"
 	"github.com/nbd-wtf/go-nostr/sdk"
-	"github.com/fiatjaf/noflux/internal/model"
-	"github.com/fiatjaf/noflux/internal/reader/processor"
-	"github.com/fiatjaf/noflux/internal/reader/rewrite"
-	"github.com/fiatjaf/noflux/internal/storage"
+	"github.com/nbd-wtf/go-nostr/sdk/hints/sqlh"
 )
 
 var NostrSdk *sdk.System
 
-func init() {
-	NostrSdk = sdk.NewSystem()
+func Initialize(db *sql.DB) error {
+	hdb, err := sqlh.NewSQLHints(db, "postgres")
+	if err != nil {
+		return fmt.Errorf("failed to initialize nostr hints db: %w", err)
+	}
+
+	NostrSdk = sdk.NewSystem(
+		sdk.WithHintsDB(hdb),
+	)
+
+	return nil
 }
 
 func GetIcon(feed *model.Feed) (bool, string) {
@@ -59,17 +70,22 @@ func CreateFeed(
 		return nil, err
 	}
 
-	if err := RefreshFeed(store, userID, subscription, profile); err != nil {
+	if err := RefreshFeed(store, userID, subscription, profile, false); err != nil {
 		return nil, err
 	}
 
 	return subscription, nil
 }
 
-func RefreshFeed(store *storage.Storage, userID int64, originalFeed *model.Feed, profile *sdk.ProfileMetadata) error {
+func RefreshFeed(
+	store *storage.Storage,
+	userID int64,
+	originalFeed *model.Feed,
+	profile *sdk.ProfileMetadata,
+	forceRefresh bool,
+) error {
 	ctx := context.Background()
 
-	fmt.Println("refreshing feed", userID, originalFeed)
 	relays := NostrSdk.FetchOutboxRelays(ctx, profile.PubKey, 3)
 	evchan := NostrSdk.Pool.SubManyEose(ctx, relays, nostr.Filters{
 		{
@@ -80,10 +96,9 @@ func RefreshFeed(store *storage.Storage, userID int64, originalFeed *model.Feed,
 	})
 	updatedFeed := originalFeed
 	for event := range evchan {
-
 		publishedAt := event.CreatedAt.Time()
-		if publishedAtTag := event.Tags.GetFirst([]string{"published_at"}); publishedAtTag != nil && len(*publishedAtTag) >= 2 {
-			i, err := strconv.ParseInt((*publishedAtTag)[1], 10, 64)
+		if paTag := event.Tags.GetFirst([]string{"published_at", ""}); paTag != nil && len(*paTag) >= 2 {
+			i, err := strconv.ParseInt((*paTag)[1], 10, 64)
 			if err != nil {
 				publishedAt = time.Unix(i, 0)
 			}
@@ -95,29 +110,25 @@ func RefreshFeed(store *storage.Storage, userID int64, originalFeed *model.Feed,
 		}
 
 		title := ""
-		titleTag := event.Tags.GetFirst([]string{"title"})
+		titleTag := event.Tags.GetFirst([]string{"title", ""})
 		if titleTag != nil && len(*titleTag) >= 2 {
 			title = (*titleTag)[1]
 		}
 
-		// format content from markdown to html
 		entry := &model.Entry{
 			Date:    publishedAt,
 			Title:   title,
-			Content: event.Content,
+			Content: replaceNostrURLsWithHTMLTags(nip23.MarkdownToHTML(event.Content)),
 			URL:     fmt.Sprintf("https://njump.me/%s", naddr),
 			Hash:    fmt.Sprintf("nostr:%s:%s", event.PubKey, event.Tags.GetD()),
 		}
 
-		rewrite.Rewriter(entry.URL, entry, "parse_markdown")
-
 		updatedFeed.Entries = append(updatedFeed.Entries, entry)
-
 	}
 
-	processor.ProcessFeedEntries(store, updatedFeed, userID, true)
+	processor.ProcessFeedEntries(store, updatedFeed, userID, forceRefresh)
 
-	_, err := store.RefreshFeedEntries(originalFeed.UserID, originalFeed.ID, updatedFeed.Entries, false)
+	_, err := store.RefreshFeedEntries(originalFeed.UserID, originalFeed.ID, updatedFeed.Entries, forceRefresh)
 	if err != nil {
 		return fmt.Errorf("failed to store refreshed items: %w", err)
 	}

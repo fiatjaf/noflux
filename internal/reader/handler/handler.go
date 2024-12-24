@@ -219,14 +219,6 @@ func RefreshFeed(store *storage.Storage, userID, feedID int64, forceRefresh bool
 	originalFeed.CheckedNow()
 	originalFeed.ScheduleNextCheck(weeklyEntryCount, refreshDelayInMinutes)
 
-	if ok, profile := nostr.IsItNostr(originalFeed.FeedURL); ok {
-		err := nostr.RefreshFeed(store, userID, originalFeed, profile)
-		if err != nil {
-			return locale.NewLocalizedErrorWrapper(err, "error.feed_not_found")
-		}
-		return nil
-	}
-
 	requestBuilder := fetcher.NewRequestBuilder()
 	requestBuilder.WithUsernameAndPassword(originalFeed.Username, originalFeed.Password)
 	requestBuilder.WithUserAgent(originalFeed.UserAgent, config.Opts.HTTPClientUserAgent())
@@ -257,6 +249,21 @@ func RefreshFeed(store *storage.Storage, userID, feedID int64, forceRefresh bool
 			slog.Int("refresh_delay_in_minutes", refreshDelayInMinutes),
 			slog.Time("new_next_check_at", originalFeed.NextCheckAt),
 		)
+	}
+
+	if ok, profile := nostr.IsItNostr(originalFeed.FeedURL); ok {
+		if err := nostr.RefreshFeed(store, userID, originalFeed, profile, forceRefresh); err != nil {
+			user, storeErr := store.UserByID(userID)
+			if storeErr != nil {
+				return locale.NewLocalizedErrorWrapper(storeErr, "error.database_error", storeErr)
+			}
+			localizedError := locale.NewLocalizedErrorWrapper(err, "error.feed_not_found")
+			originalFeed.WithTranslatedErrorMessage(localizedError.Translate(user.Language))
+			store.UpdateFeedError(originalFeed)
+			return localizedError
+		}
+		// we use a goto here so if the logic for the rest of the function is changed upstream we can merge it easily
+		goto updateFeedOnDatabase
 	}
 
 	if localizedError := responseHandler.LocalizedError(); localizedError != nil {
@@ -378,6 +385,7 @@ func RefreshFeed(store *storage.Storage, userID, feedID int64, forceRefresh bool
 
 	originalFeed.ResetErrorCounter()
 
+updateFeedOnDatabase:
 	if storeErr := store.UpdateFeed(originalFeed); storeErr != nil {
 		localizedError := locale.NewLocalizedErrorWrapper(storeErr, "error.database_error", storeErr)
 		user, storeErr := store.UserByID(userID)
