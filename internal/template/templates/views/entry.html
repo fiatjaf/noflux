@@ -82,6 +82,7 @@
                         referrerpolicy="no-referrer"
                         data-original-link="{{ .user.MarkReadOnView }}">{{ icon "external-link" }}<span class="icon-label">{{ t "entry.external_link.label" }}</span></a>
                 </li>
+                {{ if not (hasPrefix .entry.Hash "nostr:") }}
                 <li>
                     <button
                         class="page-button"
@@ -91,6 +92,7 @@
                         data-label-loading="{{ t "entry.state.loading" }}"
                         >{{ icon "scraper" }}<span class="icon-label">{{ t "entry.scraper.label" }}</span></button>
                 </li>
+                {{ end }}
                 {{ if .entry.CommentsURL }}
                 <li>
                     <a href="{{ .entry.CommentsURL | safeURL }}"
