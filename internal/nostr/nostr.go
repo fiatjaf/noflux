@@ -91,15 +91,16 @@ func RefreshFeed(
 		{
 			Authors: []string{profile.PubKey},
 			Kinds:   []int{nostr.KindArticle},
-			Limit:   32,
+			Limit:   300,
 		},
 	})
 	updatedFeed := originalFeed
 	for event := range evchan {
-		publishedAt := event.CreatedAt.Time()
+		eventTime := event.CreatedAt.Time()
+		publishedAt := eventTime
 		if paTag := event.Tags.GetFirst([]string{"published_at", ""}); paTag != nil && len(*paTag) >= 2 {
 			i, err := strconv.ParseInt((*paTag)[1], 10, 64)
-			if err != nil {
+			if err == nil {
 				publishedAt = time.Unix(i, 0)
 			}
 		}
@@ -116,11 +117,13 @@ func RefreshFeed(
 		}
 
 		entry := &model.Entry{
-			Date:    publishedAt,
-			Title:   title,
-			Content: replaceNostrURLsWithHTMLTags(nip23.MarkdownToHTML(event.Content)),
-			URL:     fmt.Sprintf("https://njump.me/%s", naddr),
-			Hash:    fmt.Sprintf("nostr:%s:%s", event.PubKey, event.Tags.GetD()),
+			Date:      publishedAt,
+			CreatedAt: publishedAt,
+			ChangedAt: eventTime,
+			Title:     title,
+			Content:   replaceNostrURLsWithHTMLTags(nip23.MarkdownToHTML(event.Content)),
+			URL:       fmt.Sprintf("https://njump.me/%s", naddr),
+			Hash:      fmt.Sprintf("nostr:%s:%s", event.PubKey, event.Tags.GetD()),
 		}
 
 		updatedFeed.Entries = append(updatedFeed.Entries, entry)

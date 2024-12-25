@@ -27,8 +27,7 @@ func replaceNostrURLsWithHTMLTags(input string) string {
 			defer cancel()
 			wg.Add(1)
 			go func() {
-				metadata, err := NostrSdk.FetchProfileFromInput(ctx, nip19)
-				fmt.Println("ERR", err)
+				metadata, _ := NostrSdk.FetchProfileFromInput(ctx, nip19)
 				if metadata.Name != "" {
 					names.Store(nip19, metadata.Name)
 				}
