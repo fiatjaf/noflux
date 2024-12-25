@@ -8,7 +8,7 @@ Documentation
 
 The Noflux documentation is available here: <https://noflux.nostr.technology/docs/> ([Man page](https://noflux.nostr.technology/noflux.1.html))
 
-- [Opinionated?](https://noflux.nostr.technology/opinionated.html)
+- [Presentation](https://noflux.nostr.technology/)
 - [Features](https://noflux.nostr.technology/features.html)
 - [Requirements](https://noflux.nostr.technology/docs/requirements.html)
 - [Installation Instructions](https://noflux.nostr.technology/docs/installation.html)
@@ -31,6 +31,6 @@ Default theme:
 
 ![Default theme](https://cdn.satellite.earth/65e9069135025d67429b4f676ab58bba60e966f68bcd0f859b6f74bdd54f9114.png)
 
-Dark theme when using keyboard navigation:
+Dark theme:
 
 ![Dark theme](https://cdn.satellite.earth/d1b78dd97c1180ea75dee69375e5e114cac91bedf61c511c0256cce6421ea375.png)
