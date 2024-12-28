@@ -39,7 +39,8 @@ func (s *SubscriptionForm) Validate() *locale.LocalizedError {
 
 	// normalize URL before validating
 	s.URL = strings.TrimSpace(s.URL)
-	if strings.HasPrefix(s.URL, "npub1") || strings.HasPrefix(s.URL, "nprofile1") || strings.Contains(s.URL, "@") {
+	if strings.HasPrefix(s.URL, "npub1") || strings.HasPrefix(s.URL, "nprofile1") ||
+		(strings.Contains(s.URL, "@") && !strings.HasPrefix(s.URL, "nostr:")) {
 		s.URL = "nostr:" + s.URL
 	} else if !strings.HasPrefix(s.URL, "nostr:") && !strings.HasPrefix(s.URL, "http") {
 		s.URL = "https://" + s.URL
