@@ -10,7 +10,6 @@ RUN mkdir -p /root/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 RUN echo "%_topdir /root/rpmbuild" >> .rpmmacros
 COPY --from=build /go/src/app/noflux /root/rpmbuild/SOURCES/noflux
 COPY --from=build /go/src/app/LICENSE /root/rpmbuild/SOURCES/
-COPY --from=build /go/src/app/ChangeLog /root/rpmbuild/SOURCES/
 COPY --from=build /go/src/app/noflux.1 /root/rpmbuild/SOURCES/
 COPY --from=build /go/src/app/packaging/systemd/noflux.service /root/rpmbuild/SOURCES/
 COPY --from=build /go/src/app/packaging/noflux.conf /root/rpmbuild/SOURCES/

@@ -3,21 +3,19 @@
 Name:    noflux
 Version: %{_noflux_version}
 Release: 1.0
-Summary: Minimalist and opinionated feed reader
-URL: https://noflux.nostr.technology/
+Summary: Nostr and RSS feed reader
+URL: https://noflux.app/
 License: ASL 2.0
 Source0: noflux
 Source1: noflux.service
 Source2: noflux.conf
 Source3: noflux.1
 Source4: LICENSE
-Source5: ChangeLog
 BuildRoot: %{_topdir}/BUILD/%{name}-%{version}-%{release}
 BuildArch: x86_64
 Requires(pre): shadow-utils
 
-%{?systemd_requires}
-BuildRequires: systemd
+%{?systemd_ordering}
 
 AutoReqProv: no
 
@@ -34,7 +32,6 @@ install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/noflux.service
 install -D -m 600 %{SOURCE2} %{buildroot}%{_sysconfdir}/noflux.conf
 install -D -m 644 %{SOURCE3} %{buildroot}%{_mandir}/man1/noflux.1
 install -D -m 644 %{SOURCE4} %{buildroot}%{_docdir}/noflux/LICENSE
-install -D -m 644 %{SOURCE5} %{buildroot}%{_docdir}/noflux/ChangeLog
 
 %files
 %defattr(755,root,root)
