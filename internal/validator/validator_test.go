@@ -3,7 +3,11 @@
 
 package validator // import "github.com/fiatjaf/noflux/internal/validator"
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/fiatjaf/noflux/internal/locale"
+)
 
 func TestIsValidURL(t *testing.T) {
 	scenarios := map[string]bool{
@@ -49,7 +53,7 @@ func TestValidateDirection(t *testing.T) {
 func TestIsValidRegex(t *testing.T) {
 	scenarios := map[string]bool{
 		"(?i)noflux": true,
-		"[":            false,
+		"[":          false,
 	}
 
 	for expr, expected := range scenarios {
@@ -74,6 +78,28 @@ func TestIsValidDomain(t *testing.T) {
 		result := IsValidDomain(domain)
 		if result != expected {
 			t.Errorf(`Unexpected result, got %v instead of %v`, result, expected)
+		}
+	}
+}
+
+func TestValidateUsername(t *testing.T) {
+	scenarios := map[string]*locale.LocalizedError{
+		"jvoisin":          nil,
+		"j.voisin":         nil,
+		"j@vois.in":        nil,
+		"invalid username": locale.NewLocalizedError("error.invalid_username"),
+	}
+
+	for username, expected := range scenarios {
+		result := validateUsername(username)
+		if expected == nil {
+			if result != nil {
+				t.Errorf(`got an unexpected error for %q instead of nil: %v`, username, result)
+			}
+		} else {
+			if result == nil {
+				t.Errorf(`expected an error, got nil.`)
+			}
 		}
 	}
 }

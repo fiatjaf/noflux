@@ -3,8 +3,7 @@ module github.com/fiatjaf/noflux
 go 1.23.3
 
 require (
-	github.com/PuerkitoBio/goquery v1.10.0
-	github.com/abadojack/whatlanggo v1.0.1
+	github.com/PuerkitoBio/goquery v1.10.1
 	github.com/andybalholm/brotli v1.1.1
 	github.com/coreos/go-oidc/v3 v3.11.0
 	github.com/go-webauthn/webauthn v0.11.2
@@ -19,11 +18,10 @@ require (
 	golang.org/x/net v0.33.0
 	golang.org/x/oauth2 v0.24.0
 	golang.org/x/term v0.27.0
-	golang.org/x/text v0.21.0
 )
 
 require (
-	github.com/andybalholm/cascadia v1.3.2 // indirect
+	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.3.4 // indirect
@@ -68,5 +66,6 @@ require (
 	github.com/x448/float16 v0.8.4 // indirect
 	golang.org/x/exp v0.0.0-20240909161429-701f63a606c0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 )
