@@ -251,6 +251,13 @@ func RefreshFeed(store *storage.Storage, userID, feedID int64, forceRefresh bool
 		)
 	}
 
+	iconChecker := icon.NewIconChecker(store, originalFeed)
+	if forceRefresh {
+		iconChecker.UpdateOrCreateFeedIcon()
+	} else {
+		iconChecker.CreateFeedIconIfMissing()
+	}
+
 	if ok, profile := nostr.IsItNostr(originalFeed.FeedURL); ok {
 		if err := nostr.RefreshFeed(store, userID, originalFeed, profile, forceRefresh); err != nil {
 			user, storeErr := store.UserByID(userID)
@@ -362,14 +369,7 @@ func RefreshFeed(store *storage.Storage, userID, feedID int64, forceRefresh bool
 
 		originalFeed.EtagHeader = responseHandler.ETag()
 		originalFeed.LastModifiedHeader = responseHandler.LastModified()
-
 		originalFeed.IconURL = updatedFeed.IconURL
-		iconChecker := icon.NewIconChecker(store, originalFeed)
-		if forceRefresh {
-			iconChecker.UpdateOrCreateFeedIcon()
-		} else {
-			iconChecker.CreateFeedIconIfMissing()
-		}
 	} else {
 		slog.Debug("Feed not modified",
 			slog.Int64("user_id", userID),
