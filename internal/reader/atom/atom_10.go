@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/fiatjaf/noflux/internal/reader/media"
-	"github.com/fiatjaf/noflux/internal/reader/sanitizer"
 )
 
 // The "atom:feed" element is the document (i.e., top-level) element of
@@ -188,7 +187,6 @@ func (a *Atom10Text) Title() string {
 		content = a.CharData
 	}
 
-	content = sanitizer.StripTags(content)
 	return strings.TrimSpace(content)
 }
 

@@ -5,9 +5,11 @@ package sanitizer // import "github.com/fiatjaf/noflux/internal/reader/sanitizer
 
 import (
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/fiatjaf/noflux/internal/config"
+	"golang.org/x/net/html"
 )
 
 func TestMain(m *testing.M) {
@@ -33,6 +35,28 @@ func BenchmarkSanitize(b *testing.B) {
 			Sanitize(v[0], v[1])
 		}
 	}
+}
+
+func FuzzSanitizer(f *testing.F) {
+	f.Fuzz(func(t *testing.T, orig string) {
+		tok := html.NewTokenizer(strings.NewReader(orig))
+		i := 0
+		for tok.Next() != html.ErrorToken {
+			i++
+		}
+
+		out := Sanitize("", orig)
+
+		tok = html.NewTokenizer(strings.NewReader(out))
+		j := 0
+		for tok.Next() != html.ErrorToken {
+			j++
+		}
+
+		if j > i {
+			t.Errorf("Got more html tokens in the sanitized html.")
+		}
+	})
 }
 
 func TestValidInput(t *testing.T) {
@@ -656,6 +680,16 @@ func TestHiddenParagraph(t *testing.T) {
 	expected := `<p>Before paragraph.</p><p>After paragraph.</p>`
 	output := Sanitize("http://example.org/", input)
 
+	if expected != output {
+		t.Errorf(`Wrong output: "%s" != "%s"`, expected, output)
+	}
+}
+
+func TestAttributesAreStripped(t *testing.T) {
+	input := `<p style="color: red;">Some text.<hr style="color: blue"/>Test.</p>`
+	expected := `<p>Some text.<hr/>Test.</p>`
+
+	output := Sanitize("http://example.org/", input)
 	if expected != output {
 		t.Errorf(`Wrong output: "%s" != "%s"`, expected, output)
 	}

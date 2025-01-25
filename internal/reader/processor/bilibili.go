@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright The Noflux Authors. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-package processor
+package processor // import "github.com/fiatjaf/noflux/internal/reader/processor
 
 import (
 	"encoding/json"

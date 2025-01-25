@@ -42,7 +42,7 @@ class WebAuthnHandler {
         return btoa(String.fromCharCode.apply(null, new Uint8Array(value)))
             .replace(/\+/g, "-")
             .replace(/\//g, "_")
-            .replace(/=/g, "");
+            .replace(/=+$/g, "");
     }
 
     async post(urlKey, username, data) {
@@ -149,7 +149,7 @@ class WebAuthnHandler {
         }
         catch (err) {
             // Swallow aborted conditional logins
-            if (err instanceof DOMException && err.name == "AbortError") {
+            if (err instanceof DOMException && err.name === "AbortError") {
                 return;
             }
             WebAuthnHandler.showErrorMessage(err);

@@ -496,7 +496,7 @@ var migrations = []func(tx *sql.Tx, driver string) error{
 	func(tx *sql.Tx, driver string) (err error) {
 		if driver == "postgresql" {
 			if _, err = tx.Exec(`ALTER TABLE users DROP COLUMN extra;`); err != nil {
-				return nil
+				return err
 			}
 		}
 		_, err = tx.Exec(`
@@ -966,6 +966,19 @@ var migrations = []func(tx *sql.Tx, driver string) error{
 			ALTER TABLE integrations ADD COLUMN cubox_enabled bool default 'f';
 			ALTER TABLE integrations ADD COLUMN cubox_api_link text default '';
 		`
+		_, err = tx.Exec(sql)
+		return err
+	},
+	func(tx *sql.Tx, _ string) (err error) {
+		sql := `
+			ALTER TABLE integrations ADD COLUMN discord_enabled bool default 'f';
+			ALTER TABLE integrations ADD COLUMN discord_webhook_link text default '';
+		`
+		_, err = tx.Exec(sql)
+		return err
+	},
+	func(tx *sql.Tx, _ string) (err error) {
+		sql := `ALTER TABLE integrations ADD COLUMN ntfy_internal_links bool default 'f';`
 		_, err = tx.Exec(sql)
 		return err
 	},

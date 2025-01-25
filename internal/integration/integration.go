@@ -10,6 +10,7 @@ import (
 	"github.com/fiatjaf/noflux/internal/integration/apprise"
 	"github.com/fiatjaf/noflux/internal/integration/betula"
 	"github.com/fiatjaf/noflux/internal/integration/cubox"
+	"github.com/fiatjaf/noflux/internal/integration/discord"
 	"github.com/fiatjaf/noflux/internal/integration/espial"
 	"github.com/fiatjaf/noflux/internal/integration/instapaper"
 	"github.com/fiatjaf/noflux/internal/integration/linkace"
@@ -48,7 +49,6 @@ func SendEntry(entry *model.Entry, userIntegrations *model.Integration) {
 			entry.Title,
 			entry.Tags,
 		)
-
 		if err != nil {
 			slog.Error("Unable to send entry to Betula",
 				slog.Int64("user_id", userIntegrations.UserID),
@@ -73,7 +73,6 @@ func SendEntry(entry *model.Entry, userIntegrations *model.Integration) {
 			userIntegrations.PinboardTags,
 			userIntegrations.PinboardMarkAsUnread,
 		)
-
 		if err != nil {
 			slog.Error("Unable to send entry to Pinboard",
 				slog.Int64("user_id", userIntegrations.UserID),
@@ -505,6 +504,7 @@ func PushEntries(feed *model.Feed, entries model.Entries, userIntegrations *mode
 			userIntegrations.NtfyUsername,
 			userIntegrations.NtfyPassword,
 			userIntegrations.NtfyIconURL,
+			userIntegrations.NtfyInternalLinks,
 			feed.NtfyPriority,
 		)
 
@@ -532,6 +532,22 @@ func PushEntries(feed *model.Feed, entries model.Entries, userIntegrations *mode
 
 		if err := client.SendNotification(feed, entries); err != nil {
 			slog.Warn("Unable to send new entries to Apprise", slog.Any("error", err))
+		}
+	}
+
+	if userIntegrations.DiscordEnabled {
+		slog.Debug("Sending new entries to Discord",
+			slog.Int64("user_id", userIntegrations.UserID),
+			slog.Int("nb_entries", len(entries)),
+			slog.Int64("feed_id", feed.ID),
+		)
+
+		client := discord.NewClient(
+			userIntegrations.DiscordWebhookLink,
+		)
+
+		if err := client.SendDiscordMsg(feed, entries); err != nil {
+			slog.Warn("Unable to send new entries to Discord", slog.Any("error", err))
 		}
 	}
 
