@@ -10,7 +10,7 @@ require (
 	github.com/gorilla/mux v1.8.1
 	github.com/lib/pq v1.10.9
 	github.com/mattn/go-sqlite3 v1.14.24
-	github.com/nbd-wtf/go-nostr v0.48.2
+	github.com/nbd-wtf/go-nostr v0.48.3
 	github.com/prometheus/client_golang v1.20.5
 	github.com/puzpuzpuz/xsync/v3 v3.4.0
 	github.com/tdewolff/minify/v2 v2.21.3
